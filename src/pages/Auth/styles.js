@@ -36,7 +36,7 @@ export const LoginBox = styled.div`
   background: #fff;
   border-radius: 0.5rem;
   padding: 2rem;
-  width: 35rem;
+  width: 30rem;
   margin: auto 2rem;
 
   display: flex;
@@ -90,7 +90,7 @@ export const Input = styled.input`
   display: block;
   padding: 3.2rem 1rem 2rem 1rem;
   width: 100%;
-  height: 4rem;
+  height: 2rem;
   font-size: 1.4rem;
   font-weight: bold;
 
@@ -98,7 +98,7 @@ export const Input = styled.input`
   border-radius: 0.8rem;
   border-color: #252429;
   background-repeat: no-repeat;
-  color: #252429;
+  color: #403b33;
 
   &:last-of-type {
     margin-top: 1.5rem;
@@ -116,7 +116,7 @@ export const SubmitButton = styled.button.attrs({ type: 'submit' })`
   background: ${props => (props.error ? '#4b4a51' : '#252429')};
 
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   font-weight: 600;
 

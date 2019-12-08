@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HeaderContainer, Project, Profile } from './styles';
+import { FaBell } from 'react-icons/fa';
+
+import {
+  HeaderContainer,
+  ProjectHeader,
+  Profile,
+  Notification,
+} from './styles';
 
 import ProjectImage from '../../../assets/project.png';
 import ProfileImage from '../../../assets/profile.png';
@@ -9,12 +16,16 @@ export default function Header({ hasProjectInfo }) {
   return (
     <HeaderContainer>
       {hasProjectInfo && (
-        <Project>
+        <ProjectHeader>
           <img src={ProjectImage} alt="project name" />
           <p> Project Name </p>
-        </Project>
+        </ProjectHeader>
       )}
       <Profile>
+        <Notification>
+          <FaBell size="30" color="#333238" />
+          <div className="count">5</div>
+        </Notification>
         <img src={ProfileImage} alt="profile" />
       </Profile>
     </HeaderContainer>
