@@ -39,11 +39,17 @@ export const RepositoryBox = styled.div`
 
 export const RepositoryDetails = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-end;
   width: 100%;
   font-size: 0.9rem;
   margin-bottom: 0.3rem;
+
+  .stars-and-forks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .stars-container,
   .forks-container {
@@ -63,6 +69,27 @@ export const RepositoryDetails = styled.div`
 
       svg {
         color: red;
+      }
+    }
+  }
+
+  .languages-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin-right: 0.3rem;
+      font-weight: 400;
+      color: #666666;
+      font-size: 0.9rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        margin: 0rem 0.2rem 0rem 0.4rem;
       }
     }
   }

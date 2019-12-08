@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaStar, FaJs } from 'react-icons/fa';
+import { FaStar, FaJs, FaDocker, FaHtml5, FaJava } from 'react-icons/fa';
 import { MdCallSplit } from 'react-icons/md';
 import { RepositoryBox, RepositoryDetails } from './styles';
 
@@ -11,6 +11,7 @@ export default function Repository({
   name,
   description,
 }) {
+  const languagesData = Object.keys(languages);
   return (
     <RepositoryBox>
       <div className="repository-info">
@@ -19,25 +20,36 @@ export default function Repository({
       </div>
 
       <RepositoryDetails>
-        {stars > 0 && (
-          <div className="stars-container">
-            <FaStar id="start" />
-            <p className="stars-count">{stars}</p>
-          </div>
-        )}
+        <div className="stars-and-forks">
+          {stars > 0 && (
+            <div className="stars-container">
+              <FaStar id="start" />
+              <p className="stars-count">{stars}</p>
+            </div>
+          )}
 
-        {forks > 0 && (
-          <div className="forks-container">
-            <MdCallSplit />
-            <p className="forks-count">{forks}</p>
-          </div>
-        )}
+          {forks > 0 && (
+            <div className="forks-container">
+              <MdCallSplit />
+              <p className="forks-count">{forks}</p>
+            </div>
+          )}
+        </div>
 
-        {Object.keys(languages).length === 0 && (
+        {languagesData.length > 0 && (
           <div className="languages-container">
-            {Object.keys(languages).map(language => (
-              <p>{language}</p>
-            ))}
+            {languagesData.map(language => {
+              let icon;
+              if (language === 'HTML') icon = <FaHtml5 color="red" />;
+              if (language === 'JavaScript') icon = <FaJs color="yellow" />;
+              if (language === 'Dockerfile') icon = <FaDocker color="blue" />;
+
+              return (
+                <p>
+                  {icon} {language}
+                </p>
+              );
+            })}
           </div>
         )}
       </RepositoryDetails>
