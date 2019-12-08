@@ -12,7 +12,7 @@ export default class Dashboard extends Component {
     return (
       <>
         <ProjectsContainer>
-          <Header hasProjectInfo />
+          <Header />
         </ProjectsContainer>
       </>
     );

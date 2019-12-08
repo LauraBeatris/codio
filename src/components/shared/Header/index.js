@@ -14,7 +14,7 @@ import ProfileImage from '../../../assets/profile.png';
 
 export default function Header({ hasProjectInfo }) {
   return (
-    <HeaderContainer>
+    <HeaderContainer hasProjectInfo={hasProjectInfo}>
       {hasProjectInfo && (
         <ProjectHeader>
           <img src={ProjectImage} alt="project name" />

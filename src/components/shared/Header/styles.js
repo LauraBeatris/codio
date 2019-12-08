@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props =>
+    props.hasProjectInfo ? 'space-between' : 'flex-end'};
   align-items: center;
   padding: 0.8rem;
 `;
