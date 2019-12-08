@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   AuthContainer,
@@ -20,15 +21,19 @@ export default class Auth extends Component {
   handleSubmit = ev => {
     ev.preventDefault();
     const { login, password } = this.state;
-    console.log('hey');
+    const { history } = this.props;
+
+    // Doing a simple validation
     if (!login)
       return this.setState({ error: 'Please, provide a valid login' });
     if (!password)
       return this.setState({ error: 'Please, provide a valid password' });
 
+    // If passed the validation, clean the error state
     this.setState({ error: null });
-    // TO DO -> Redirect to the dashboard and fetch the user data
-    return true;
+
+    // Redirecting to the dashboard
+    return history.push('/dashboard/projects');
   };
 
   render() {
@@ -93,3 +98,7 @@ export default class Auth extends Component {
     );
   }
 }
+
+Auth.propTypes = {
+  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
+};

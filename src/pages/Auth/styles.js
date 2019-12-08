@@ -26,7 +26,7 @@ export const LogoContainer = styled.div`
     font-weight: 500;
     text-transform: lowercase;
     letter-spacing: 0.1rem;
-    color: #252429;
+    color: #403b33;
 
     position: absolute;
     top: 85%;
