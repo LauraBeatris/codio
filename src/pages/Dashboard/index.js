@@ -1,13 +1,15 @@
-// Projects
 import React, { Component } from 'react';
 
 import Header from '../../components/shared/Header';
 import Repository from '../../components/Repository';
+import Layout from '../../components/shared/Layout';
+
 import { ProjectsContainer, Repositories } from './styles';
 
 import RepositoriesFixtures from './fixtures';
+import { InitConsumer } from '../../context';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
   state = {
     repositories: RepositoriesFixtures,
   };
@@ -15,7 +17,7 @@ export default class Dashboard extends Component {
   render() {
     const { repositories } = this.state;
     return (
-      <>
+      <Layout>
         <ProjectsContainer>
           <Header title="Select a Repository" />
           <Repositories>
@@ -31,7 +33,15 @@ export default class Dashboard extends Component {
             ))}
           </Repositories>
         </ProjectsContainer>
-      </>
+      </Layout>
     );
   }
 }
+
+const ContextDashboard = props => (
+  <InitConsumer>
+    {session => <Dashboard {...props} session={session} />}
+  </InitConsumer>
+);
+
+export { Dashboard, ContextDashboard as default };

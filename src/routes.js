@@ -4,16 +4,18 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 /* Auth Pages */
 import Login from './pages/Auth';
 import Dashboard from './pages/Dashboard';
+import Repository from './pages/Repository';
 
-import Layout from './components/shared/Layout';
+import InitProvider from './context';
 
 export default () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={Login} />
-      <Layout>
-        <Route path="/dashboard/repositories" component={Dashboard} />
-      </Layout>
+      <InitProvider>
+        <Route path="/" exact component={Login} />
+        <Route path="/dashboard/repositories" exact component={Dashboard} />
+        <Route path="/dashboard/repositories/:repo" component={Repository} />
+      </InitProvider>
     </Switch>
   </BrowserRouter>
 );

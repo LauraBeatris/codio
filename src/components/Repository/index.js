@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FaStar, FaJs, FaDocker, FaHtml5, FaJava } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+import { FaStar, FaJs, FaDocker, FaHtml5 } from 'react-icons/fa';
 import { MdCallSplit } from 'react-icons/md';
 import { RepositoryBox, RepositoryDetails } from './styles';
 
@@ -15,7 +17,12 @@ export default function Repository({
   return (
     <RepositoryBox>
       <div className="repository-info">
-        <p className="repository-name">{name}</p>
+        <Link
+          to={`/dashboard/repositories/${name}`}
+          className="repository-name"
+        >
+          {name}
+        </Link>
         <p className="repository-description">{description}</p>
       </div>
 
@@ -38,14 +45,14 @@ export default function Repository({
 
         {languagesData.length > 0 && (
           <div className="languages-container">
-            {languagesData.map(language => {
+            {languagesData.map((language, key) => {
               let icon;
               if (language === 'HTML') icon = <FaHtml5 color="red" />;
               if (language === 'JavaScript') icon = <FaJs color="yellow" />;
               if (language === 'Dockerfile') icon = <FaDocker color="blue" />;
 
               return (
-                <p>
+                <p key={String(key)}>
                   {icon} {language}
                 </p>
               );
@@ -60,7 +67,7 @@ export default function Repository({
 Repository.propTypes = {
   stars: PropTypes.number.isRequired,
   forks: PropTypes.number.isRequired,
-  languages: PropTypes.isRequired,
+  languages: PropTypes.shape({}).isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
