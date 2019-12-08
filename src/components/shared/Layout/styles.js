@@ -7,11 +7,33 @@ export const GridContainer = styled.div`
 
   font-size: 0.8rem;
 
+  @media (min-width: 768px) and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    grid-template-columns: auto;
+  }
+
   @media (min-width: 481px) and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
     grid-template-columns: auto;
   }
 
   @media (min-width: 320px) and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
     grid-template-columns: auto;
   }
 `;
@@ -19,6 +41,10 @@ export const GridContainer = styled.div`
 export const Aside = styled.aside`
   background: #252429;
   width: 100%;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    display: none;
+  }
 
   @media (min-width: 481px) and (max-width: 767px) {
     display: none;

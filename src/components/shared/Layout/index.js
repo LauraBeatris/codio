@@ -30,12 +30,12 @@ export default function Layout({
 }) {
   const renderItems = () => {
     const items = [
-      { name: 'Code', active: true },
-      { name: 'Issues', number: issues },
-      { name: 'Pull Requests', number: pullRequests },
-      { name: 'Projects', number: projects },
-      { name: 'Wiki' },
-      { name: 'Insights' },
+      { name: 'Code', active: false },
+      { name: 'Issues', number: issues, active: false },
+      { name: 'Pull Requests', number: pullRequests, active: false },
+      { name: 'Projects', number: projects, active: false },
+      { name: 'Wiki', active: false },
+      { name: 'Insights', active: false },
     ];
     const icons = [
       <FaCode size="24" />,

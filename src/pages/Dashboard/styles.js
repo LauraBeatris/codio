@@ -9,8 +9,11 @@ export const ProjectsContainer = styled.div`
 export const Repositories = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 4fr);
-  grid-gap: 1rem;
+  grid-template-rows: repeat(3, 10.5rem);
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    grid-template-rows: repeat(3, 12rem);
+  }
 
   @media (min-width: 481px) and (max-width: 767px) {
     display: flex;
