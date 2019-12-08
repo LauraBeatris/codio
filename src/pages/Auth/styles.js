@@ -113,7 +113,7 @@ export const Input = styled.input`
 export const SubmitButton = styled.button.attrs({ type: 'submit' })`
   border: none;
   border-radius: 0.8rem;
-  background: ${props => (props.disabled ? '#4b4a51' : '#252429')};
+  background: ${props => (props.error ? '#4b4a51' : '#252429')};
 
   color: #fff;
   font-size: 2rem;
@@ -136,4 +136,15 @@ export const SubmitButton = styled.button.attrs({ type: 'submit' })`
   &:active {
     transform: translateY(0rem);
   }
+`;
+
+export const Error = styled.div`
+  background: tomato;
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  transition: 0.5 all ease-in-out;
 `;

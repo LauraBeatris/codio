@@ -8,6 +8,7 @@ import {
   Label,
   SubmitButton,
   LogoContainer,
+  Error,
 } from './styles';
 import Logo from '../../assets/logo.png';
 
@@ -28,9 +29,6 @@ export default class Auth extends Component {
       return this.setState({ error: 'Please, provide a valid login' });
     if (!password)
       return this.setState({ error: 'Please, provide a valid password' });
-
-    // If passed the validation, clean the error state
-    this.setState({ error: null });
 
     // Redirecting to the dashboard
     return history.push('/dashboard/projects');
@@ -91,7 +89,9 @@ export default class Auth extends Component {
               />
             </div>
 
-            <SubmitButton disabled={!!error}> Login </SubmitButton>
+            {error && <Error>{error}</Error>}
+
+            <SubmitButton error={!!error}> Login </SubmitButton>
           </form>
         </LoginBox>
       </AuthContainer>
