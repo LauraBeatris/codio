@@ -11,12 +11,12 @@ export const RepositoryBox = styled.div`
   margin: 0.5rem 0.6rem;
 
   @media (min-width: 481px) and (max-width: 767px) {
-    margin: 1rem 1rem;
+    margin: 1rem 0rem;
     width: 100%;
   }
 
   @media (min-width: 320px) and (max-width: 480px) {
-    margin: 1rem 1rem;
+    margin: 1rem 0rem;
     width: 90%;
   }
 
@@ -77,6 +77,13 @@ export const RepositoryDetails = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (min-width: 320px) and (max-width: 767px) {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
 
     p {
       margin-right: 0.3rem;

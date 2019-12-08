@@ -23,18 +23,14 @@ export const GridContainer = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-
-    grid-template-columns: auto;
   }
 
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 900px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
-
-    grid-template-columns: auto;
   }
 `;
 

@@ -6,6 +6,10 @@ export const HeaderContainer = styled.div`
     props.hasProjectInfo ? 'space-between' : 'flex-end'};
   align-items: center;
   padding: 0.8rem;
+
+  @media (min-width: 320px) and (max-width: 900px) {
+    margin: 0rem 1rem;
+  }
 `;
 
 export const ProjectHeader = styled.div`

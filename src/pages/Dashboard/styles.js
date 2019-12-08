@@ -12,7 +12,8 @@ export const Repositories = styled.div`
   grid-template-rows: repeat(3, 10.5rem);
 
   @media (min-width: 768px) and (max-width: 1024px) {
-    grid-template-rows: repeat(3, 12rem);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 12rem);
   }
 
   @media (min-width: 481px) and (max-width: 767px) {
