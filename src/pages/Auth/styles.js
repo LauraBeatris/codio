@@ -113,7 +113,7 @@ export const Input = styled.input`
 export const SubmitButton = styled.button.attrs({ type: 'submit' })`
   border: none;
   border-radius: 0.8rem;
-  background: ${props => (props.error ? '#4b4a51' : '#252429')};
+  background: ${props => (props.error ? '#4b4a51' : '#403b33')};
 
   color: #fff;
   font-size: 1.5rem;

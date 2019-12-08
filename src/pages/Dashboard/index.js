@@ -1,7 +1,7 @@
 // Projects
 import React, { Component } from 'react';
 import Header from '../../components/shared/Header';
-import { Aside, ProjectsContainer } from './styles';
+import { ProjectsContainer } from './styles';
 
 export default class Dashboard extends Component {
   state = {
@@ -11,9 +11,6 @@ export default class Dashboard extends Component {
   render() {
     return (
       <>
-        <Aside>
-          <h1> Teste </h1>
-        </Aside>
         <ProjectsContainer>
           <Header hasProjectInfo />
         </ProjectsContainer>
