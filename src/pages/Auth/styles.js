@@ -69,7 +69,7 @@ export const Label = styled.label`
   font-size: 1.3rem;
   z-index: 11;
   margin-bottom: 1rem;
-  font-weight: bold;
+  font-weight: 500;
   display: block;
   top: 0.5rem;
   left: 0.8rem;

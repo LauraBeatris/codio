@@ -12,7 +12,7 @@ export default () => (
     <Switch>
       <Route path="/" exact component={Login} />
       <Layout>
-        <Route path="/dashboard/projects" component={Dashboard} />
+        <Route path="/dashboard/repositories" component={Dashboard} />
       </Layout>
     </Switch>
   </BrowserRouter>

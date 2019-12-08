@@ -31,7 +31,7 @@ export default class Auth extends Component {
       return this.setState({ error: 'Please, provide a valid password' });
 
     // Redirecting to the dashboard
-    return history.push('/dashboard/projects');
+    return history.push('/dashboard/repositories');
   };
 
   render() {

@@ -12,15 +12,16 @@ import {
 import ProjectImage from '../../../assets/project.png';
 import ProfileImage from '../../../assets/profile.png';
 
-export default function Header({ hasProjectInfo }) {
+export default function Header({ hasProjectInfo, title }) {
   return (
-    <HeaderContainer hasProjectInfo={hasProjectInfo}>
+    <HeaderContainer hasProjectInfo={hasProjectInfo || title}>
       {hasProjectInfo && (
         <ProjectHeader>
           <img src={ProjectImage} alt="project name" />
           <p> Project Name </p>
         </ProjectHeader>
       )}
+      {!!title && <p> {title} </p>}
       <Profile>
         <Notification>
           <FaBell size="30" color="#333238" />
@@ -34,8 +35,10 @@ export default function Header({ hasProjectInfo }) {
 
 Header.defaultProps = {
   hasProjectInfo: false,
+  title: '',
 };
 
 Header.propTypes = {
   hasProjectInfo: PropTypes.bool,
+  title: PropTypes.string,
 };

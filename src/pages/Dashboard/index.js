@@ -1,18 +1,23 @@
 // Projects
 import React, { Component } from 'react';
 import Header from '../../components/shared/Header';
-import { ProjectsContainer } from './styles';
+import { ProjectsContainer, Repositories, Repository } from './styles';
 
 export default class Dashboard extends Component {
   state = {
-    projects: [],
+    repositories: [],
   };
 
   render() {
     return (
       <>
         <ProjectsContainer>
-          <Header />
+          <Header title="Repositories"/>
+          <Repositories>
+            {this.state.repositories.map((r, key) => (
+              <Repository />
+            ))}
+          </Repositories>
         </ProjectsContainer>
       </>
     );
