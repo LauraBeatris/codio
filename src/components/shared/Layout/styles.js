@@ -54,7 +54,7 @@ export const ProjectList = styled.ul`
   list-style: none;
   color: #fff;
 
-  #title {
+  .title {
     color: #747475;
     font-size: 0.85rem;
     font-weight: 500;
@@ -94,10 +94,21 @@ export const Item = styled.li`
     margin-right: 0.8rem;
   }
 
-  #number {
+  .number {
     position: absolute;
     left: 90%;
     color: #747475;
     font-weight: bold;
   }
 `;
+
+export const CodioHome = styled(ProjectList)`
+  margin-top: 1.3rem;
+
+  .last {
+    margin: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+`;
+
+export const AuthItems = styled(CodioHome)``;

@@ -16,6 +16,8 @@ import {
   LogoContainer,
   ProjectList,
   Item,
+  CodioHome,
+  AuthItems,
 } from './styles';
 import Logo from '../../../assets/transparent-logo.png';
 
@@ -36,20 +38,20 @@ export default function Layout({
       { name: 'Insights' },
     ];
     const icons = [
-      <FaCode size="25" />,
-      <FaExclamationCircle size="25" />,
-      <FaCodeBranch size="25" />,
-      <FaFolder size="25" />,
-      <FaBookOpen size="25" />,
-      <FaSignal size="25" />,
+      <FaCode size="24" />,
+      <FaExclamationCircle size="24" />,
+      <FaCodeBranch size="24" />,
+      <FaFolder size="24" />,
+      <FaBookOpen size="24" />,
+      <FaSignal size="24" />,
     ];
 
     return items.map((i, key) => {
       return (
-        <Item active={i.active}>
+        <Item key={String(key)} active={i.active}>
           {icons[key]}
-          <p id="name">{i.name}</p>
-          {i.number !== undefined && <p id="number">{i.number}</p>}
+          <p className="name">{i.name}</p>
+          {i.number !== undefined && <p className="number">{i.number}</p>}
         </Item>
       );
     });
@@ -64,9 +66,29 @@ export default function Layout({
         </LogoContainer>
 
         <ProjectList>
-          <li id="title"> Project </li>
+          <li className="title"> Project </li>
           {renderItems()}
         </ProjectList>
+
+        <CodioHome>
+          <li className="title"> Codio Home </li>
+          {['Feature', 'Business', 'Explore', 'Marketplace', 'Pricing'].map(
+            (i, key) => (
+              <Item key={String(key)}>
+                <p id="name">{i}</p>
+              </Item>
+            )
+          )}
+          <div className="last" />
+        </CodioHome>
+
+        <AuthItems>
+          {['Sign In', 'Register'].map((i, key) => (
+            <Item key={String(key)}>
+              <p id="name">{i}</p>
+            </Item>
+          ))}
+        </AuthItems>
       </Aside>
       {children}
     </GridContainer>
