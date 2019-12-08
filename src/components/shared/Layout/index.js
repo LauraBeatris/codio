@@ -1,12 +1,12 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import { GridContainer } from './styles';
 
-export default function Layout() {
-  return (
-    <GridContainer>
-      <h1>hey</h1>
-      <h1>whats up</h1>
-    </GridContainer>
-  );
+export default function Layout({ children }) {
+  return <GridContainer>{children}</GridContainer>;
 }
+
+Layout.propTypes = {
+  children: PropTypes.element.isRequired,
+};

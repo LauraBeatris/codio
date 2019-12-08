@@ -5,7 +5,7 @@ export const GridContainer = styled.div`
   min-height: 100vh;
   grid-template-columns: 28rem auto;
 
-  font-size: 2.5rem;
+  font-size: 0.8rem;
 
   @media (min-width: 481px) and (max-width: 767px) {
     grid-template-columns: auto;

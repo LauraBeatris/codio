@@ -8,7 +8,6 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-    font-size: 62.5%;
   }
 
 
@@ -18,6 +17,7 @@ export default createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased !important;
+    font-size: 62.5%;
     font-family: 'Roboto', 'Arial', 'sans-serif';
   }
 
