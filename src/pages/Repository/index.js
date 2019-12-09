@@ -1,17 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Layout from '../../components/shared/Layout';
-import Context, { InitConsumer } from '../../context';
+import { InitConsumer } from '../../context';
+import MainHeader from '../../components/shared/Header';
 
-// import { Container } from './styles';
+import {
+  HeaderInfo,
+  InteractiveHeader,
+  FilesContainer,
+  HeaderContainer,
+  RepoContainer,
+} from './styles';
 
-class Repository extends Component {
-  render() {
-    return (
-      <Layout>
-        <div />
-      </Layout>
-    );
-  }
+function Repository() {
+  return (
+    <Layout>
+      <RepoContainer>
+        <HeaderContainer>
+          <MainHeader hasProjectInfo />
+          <HeaderInfo />
+          <InteractiveHeader />
+        </HeaderContainer>
+      </RepoContainer>
+    </Layout>
+  );
 }
 
 const RepositoryConsumer = props => (

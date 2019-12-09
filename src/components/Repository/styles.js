@@ -21,6 +21,7 @@ export const RepositoryBox = styled.div`
   }
 
   .repository-name {
+    text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
