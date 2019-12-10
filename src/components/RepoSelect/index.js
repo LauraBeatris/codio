@@ -16,9 +16,9 @@ export default function RepoSelect({
       textColor={textColor}
       borderColor={borderColor}
     >
-      <FaCloudDownloadAlt color={textColor} class="download-icon" size="25" />
+      <FaCloudDownloadAlt color={textColor} class="download-icon" size="20" />
       <p>{text}</p>
-      <FaSort color={textColor} class="select-icon" size="25" />
+      <FaSort color={textColor} class="select-icon" size="20" />
       <Select>
         <option value="0">Select car:</option>
         <option value="1">Audi</option>

@@ -8,8 +8,23 @@ import RepoButton from '../RepoButton';
 export default function InteractiveHeader() {
   return (
     <Container>
-      <RepoButton isWatch number="5" icon={<FaEye size="20" />} />
-      <RepoButton icon={<FaHistory />} />
+      <div id="first-column">
+        <RepoSelect
+          backgroundColor="#fff"
+          textColor="#3f3838"
+          text="Master"
+          borderColor="#adadad"
+        />
+      </div>
+      <div id="second-column">
+        <RepoButton icon={<FaHistory size="20" />} />
+        <RepoButton isWatch number="5" icon={<FaEye size="20" />} />
+        <RepoSelect
+          backgroundColor="#3BB249"
+          textColor="#fff"
+          text="Clone or Download"
+        />
+      </div>
     </Container>
   );
 }
