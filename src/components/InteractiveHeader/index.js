@@ -13,7 +13,7 @@ export default function InteractiveHeader() {
           backgroundColor="#fff"
           textColor="#3f3838"
           text="Master"
-          borderColor="#adadad"
+          borderColor="#3f3838"
         />
       </div>
       <div id="second-column">

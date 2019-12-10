@@ -23,4 +23,13 @@ export const HeaderInfo = styled.div`
   }
 `;
 
-export const FilesContainer = styled.div``;
+export const CommitsContainer = styled.div`
+  color: #a5a5a5;
+  font-size: 0.9rem;
+  padding: 0.8rem;
+  font-weight: 500;
+  margin-left: 1.9rem;
+
+  display: grid;
+  grid-template-rows: 2.5rem auto;
+`;

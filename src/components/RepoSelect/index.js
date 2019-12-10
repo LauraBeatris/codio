@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaSort, FaCloudDownloadAlt } from 'react-icons/fa';
-import { SelectContainer, Select } from './styles';
+import { SelectContainer } from './styles';
 
 export default function RepoSelect({
   backgroundColor,
@@ -9,6 +9,7 @@ export default function RepoSelect({
   borderColor,
   text,
 }) {
+  console.log(borderColor);
   return (
     <SelectContainer
       class="select-wrapper"
@@ -19,7 +20,7 @@ export default function RepoSelect({
       <FaCloudDownloadAlt color={textColor} class="download-icon" size="20" />
       <p>{text}</p>
       <FaSort color={textColor} class="select-icon" size="20" />
-      <Select>
+      <select>
         <option value="0">Select car:</option>
         <option value="1">Audi</option>
         <option value="2">BMW</option>
@@ -33,7 +34,7 @@ export default function RepoSelect({
         <option value="10">Nissan</option>
         <option value="11">Toyota</option>
         <option value="12">Volvo</option>
-      </Select>
+      </select>
     </SelectContainer>
   );
 }

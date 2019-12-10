@@ -4,8 +4,7 @@ export const SelectContainer = styled.div`
   position: relative;
   width: 12rem;
   border-radius: 0.2rem;
-  border: 0.04rem solid
-    ${props => (props.borderColor ? props.borderColor : '#adadad')};
+  border: 0.04rem solid #3f3838;
 
   background: ${props => props.backgroundColor};
   cursor: pointer;
@@ -46,5 +45,3 @@ export const SelectContainer = styled.div`
     cursor: pointer;
   }
 `;
-
-export const Select = styled.select``;

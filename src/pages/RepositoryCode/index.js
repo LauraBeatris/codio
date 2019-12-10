@@ -5,13 +5,18 @@ import Layout from '../../components/shared/Layout';
 import MainHeader from '../../components/shared/Header';
 import RepoInfo from '../../components/RepoInfo';
 import InteractiveHeader from '../../components/InteractiveHeader';
+import LastCommit from '../../components/LastCommit';
+import Files from '../../components/Files';
+
 import info from './fixtures';
+import commitFixture from '../../components/LastCommit/fixtures';
+import filesFixture from '../../components/Files/fixtures';
 
 import {
   HeaderInfo,
-  FilesContainer,
   HeaderContainer,
   RepoContainer,
+  CommitsContainer,
 } from './styles';
 
 function Repository() {
@@ -20,12 +25,20 @@ function Repository() {
       <RepoContainer>
         <HeaderContainer>
           <MainHeader hasProjectInfo />
+
           <HeaderInfo>
             <p> Pacman Artifical Inteligence Python Project by Laura </p>
             <RepoInfo info={info} />
             <InteractiveHeader />
           </HeaderInfo>
         </HeaderContainer>
+
+        <CommitsContainer>
+          <div>
+            <LastCommit data={commitFixture} />
+          </div>
+          <Files files={filesFixture} />
+        </CommitsContainer>
       </RepoContainer>
     </Layout>
   );
