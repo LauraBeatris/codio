@@ -8,7 +8,7 @@ export const RepositoryBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   padding: 1rem;
-  margin: 0.5rem 0.6rem;
+  margin: 0.5rem 0.8rem;
 
   @media (min-width: 481px) and (max-width: 767px) {
     margin: 1rem 0rem;

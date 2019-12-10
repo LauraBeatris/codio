@@ -1,7 +1,10 @@
 import React from 'react';
-import Layout from '../../components/shared/Layout';
+
 import { InitConsumer } from '../../context';
+import Layout from '../../components/shared/Layout';
 import MainHeader from '../../components/shared/Header';
+import RepoInfo from '../../components/RepoInfo';
+import info from './fixtures';
 
 import {
   HeaderInfo,
@@ -17,7 +20,10 @@ function Repository() {
       <RepoContainer>
         <HeaderContainer>
           <MainHeader hasProjectInfo />
-          <HeaderInfo />
+          <HeaderInfo>
+            <p> Pacman Artifical Inteligence Python Project by Laura </p>
+            <RepoInfo info={info} />
+          </HeaderInfo>
           <InteractiveHeader />
         </HeaderContainer>
       </RepoContainer>

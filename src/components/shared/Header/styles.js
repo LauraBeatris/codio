@@ -6,10 +6,6 @@ export const HeaderContainer = styled.div`
     props.hasProjectInfo ? 'space-between' : 'flex-end'};
   align-items: center;
   padding: 0.8rem;
-
-  @media (min-width: 320px) and (max-width: 900px) {
-    margin: 0rem 1rem;
-  }
 `;
 
 export const ProjectHeader = styled.div`
@@ -17,6 +13,11 @@ export const ProjectHeader = styled.div`
   justify-content: center;
   align-items: center;
   color: #333238;
+
+  p {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
 `;
 
 export const Profile = styled.div`
@@ -37,7 +38,7 @@ export const Notification = styled.div`
     font-weight: bold;
     padding: 0.1rem 0.4rem;
     border-radius: 100%;
-    background: tomato;
+    background: #3bb249;
 
     display: flex;
     justify-content: center;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../../components/shared/Header';
-import Repository from '../../components/Repository';
+import Repository from '../../components/RepositoryBox';
 import Layout from '../../components/shared/Layout';
 
 import { ProjectsContainer, Repositories } from './styles';
