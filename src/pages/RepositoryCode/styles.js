@@ -23,11 +23,4 @@ export const HeaderInfo = styled.div`
   }
 `;
 
-export const InteractiveHeader = styled.div`
-  padding: 0.8rem;
-
-  div {
-  }
-`;
-
 export const FilesContainer = styled.div``;

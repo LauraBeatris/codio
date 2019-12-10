@@ -4,11 +4,11 @@ import { InitConsumer } from '../../context';
 import Layout from '../../components/shared/Layout';
 import MainHeader from '../../components/shared/Header';
 import RepoInfo from '../../components/RepoInfo';
+import InteractiveHeader from '../../components/InteractiveHeader';
 import info from './fixtures';
 
 import {
   HeaderInfo,
-  InteractiveHeader,
   FilesContainer,
   HeaderContainer,
   RepoContainer,
@@ -23,8 +23,8 @@ function Repository() {
           <HeaderInfo>
             <p> Pacman Artifical Inteligence Python Project by Laura </p>
             <RepoInfo info={info} />
+            <InteractiveHeader />
           </HeaderInfo>
-          <InteractiveHeader />
         </HeaderContainer>
       </RepoContainer>
     </Layout>
