@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { FaSort, FaCloudDownloadAlt } from 'react-icons/fa';
 import { SelectContainer, Select } from './styles';
 
@@ -37,3 +37,10 @@ export default function RepoSelect({
     </SelectContainer>
   );
 }
+
+RepoSelect.propTypes = {
+  backgroundColor: PropTypes.string.isRequired,
+  textColor: PropTypes.string.isRequired,
+  borderColor: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
