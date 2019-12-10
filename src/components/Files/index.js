@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FaFolder, FaFileAlt } from 'react-icons/fa';
-import { FlexContainer } from '../../styles/containers';
+import { GridContainer } from '../../styles/containers';
 import { FileItemContainer } from './styles';
 
 export function FileItem({ data }) {
-  console.log(data);
   const { type, name, comment, date } = data;
   let icon;
-  if (type === 'file') icon = <FaFileAlt />;
-  if (type === 'dir') icon = <FaFolder />;
+  if (type === 'file') icon = <FaFileAlt size="19" />;
+  if (type === 'dir') icon = <FaFolder size="19" />;
   return (
     <FileItemContainer>
       <div>
@@ -26,11 +25,11 @@ export function FileItem({ data }) {
 
 export default function Files({ files }) {
   return (
-    <FlexContainer>
+    <GridContainer hasRows rowsNumber={files.length} rowLength="3rem">
       {files.map(file => (
         <FileItem data={file} />
       ))}
-    </FlexContainer>
+    </GridContainer>
   );
 }
 

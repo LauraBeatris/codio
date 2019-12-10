@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const LastCommitContainer = styled.div`
+  font-weight: 400;
+
   img {
     border-radius: 50%;
     height: 2rem;

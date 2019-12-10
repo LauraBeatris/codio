@@ -30,6 +30,10 @@ export const CommitsContainer = styled.div`
   font-weight: 500;
   margin-left: 1.9rem;
 
+  @media (min-width: 320px) and (max-width: 767px) {
+    margin-left: 0rem;
+  }
+
   display: grid;
   grid-template-rows: 2.5rem auto;
 `;

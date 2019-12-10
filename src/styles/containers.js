@@ -25,3 +25,17 @@ export const FlexContainer = styled.div`
        }
      `}
 `;
+
+export const GridContainer = styled.div`
+  display: grid;
+  ${props =>
+    props.hasRows &&
+    css`
+      grid-template-rows: repeat(${props.rowsNumber}, ${props.rowLength});
+    `}
+  ${props =>
+    props.hasColumns &&
+    css`
+      grid-template-columns: repeat(${props.colsNumber}, ${props.colLength});
+    `}
+`;
