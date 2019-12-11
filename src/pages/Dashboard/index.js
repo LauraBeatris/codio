@@ -9,13 +9,25 @@ import { ProjectsContainer, Repositories } from './styles';
 import RepositoriesFixtures from './fixtures';
 import { InitConsumer } from '../../context';
 
+import Loading from '../../components/Loading';
+
 class Dashboard extends Component {
   state = {
     repositories: RepositoriesFixtures,
+    loading: true,
   };
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 3000);
+  }
+
   render() {
-    const { repositories } = this.state;
+    const { repositories, loading } = this.state;
+
+    if (loading) return <Loading />;
+
     return (
       <Layout>
         <ProjectsContainer>
