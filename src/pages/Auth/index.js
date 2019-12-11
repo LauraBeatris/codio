@@ -12,31 +12,40 @@ import {
   Error,
 } from './styles';
 import Logo from '../../assets/transparent-logo.png';
+import { InitConsumer } from '../../context';
+import GithubApi from '../../services/api';
 
-export default class Auth extends Component {
+class Auth extends Component {
   state = {
     login: '',
-    password: '',
     error: '',
   };
 
-  handleSubmit = ev => {
+  handleSubmit = async ev => {
     ev.preventDefault();
-    const { login, password } = this.state;
-    const { history } = this.props;
+    const { login } = this.state;
+    const { history, session } = this.props;
 
     // Doing a simple validation
     if (!login)
       return this.setState({ error: 'Please, provide a valid login' });
-    if (!password)
-      return this.setState({ error: 'Please, provide a valid password' });
 
+    // Doing the request to get user data
+    let user = null;
+    await GithubApi.getUser(login)
+      .then(res => {
+        user = res;
+        return res;
+      })
+      .catch(() => this.setState({ error: 'User not found' }));
+    // Storing - Context
+    await session.updateValues({ user });
     // Redirecting to the dashboard
-    return history.push('/dashboard/repositories');
+    return user && history.push('/dashboard/repositories');
   };
 
   render() {
-    const { error, login, password } = this.state;
+    const { error, login } = this.state;
     return (
       <AuthContainer>
         <LoginBox>
@@ -53,7 +62,7 @@ export default class Auth extends Component {
             <div id="login-container">
               <Label id="login-label" fill={!!login} htmlFor="login">
                 {' '}
-                Enter your username
+                Enter your git username
               </Label>
               <Input
                 id="login"
@@ -70,31 +79,6 @@ export default class Auth extends Component {
                 onChange={ev => this.setState({ login: ev.target.value })}
               />
             </div>
-
-            <div id="password-container">
-              <Label id="password-label" fill={!!password} htmlFor="password">
-                Enter your password
-              </Label>
-
-              <Input
-                id="password"
-                type="password"
-                autoComplete={false}
-                onFocus={() => {
-                  const passwordField = document.getElementById(
-                    'password-container'
-                  );
-                  passwordField.classList.add('active');
-                }}
-                onBlur={() => {
-                  const passwordField = document.getElementById(
-                    'password-container'
-                  );
-                  passwordField.classList.remove('active');
-                }}
-                onChange={ev => this.setState({ password: ev.target.value })}
-              />
-            </div>
             {error && <Error>{error}</Error>}
             <SubmitButton error={!!error}>
               Login
@@ -107,6 +91,16 @@ export default class Auth extends Component {
   }
 }
 
+const ContextAuth = props => (
+  <InitConsumer>
+    {session => <Auth {...props} session={session} />}
+  </InitConsumer>
+);
+
 Auth.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
+  session: PropTypes.shape({ updateValues: PropTypes.func.isRequired })
+    .isRequired,
 };
+
+export { ContextAuth as default, Auth };

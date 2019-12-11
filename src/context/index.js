@@ -10,8 +10,13 @@ class InitProvider extends Component {
     this.state = {
       choosedRepository: null,
       repositories: null,
-      profile: null,
+      user: null,
+      updateValues: data => this.updateValues(data),
     };
+  }
+
+  updateValues(data) {
+    return this.setState({ ...this.state, ...data });
   }
 
   render() {
@@ -25,7 +30,7 @@ class InitProvider extends Component {
 export const InitConsumer = InitContext.Consumer;
 
 InitProvider.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default withRouter(InitProvider);
