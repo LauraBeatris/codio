@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaArrowRight } from 'react-icons/fa';
 
 import {
   AuthContainer,
@@ -10,7 +11,7 @@ import {
   LogoContainer,
   Error,
 } from './styles';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/transparent-logo.png';
 
 export default class Auth extends Component {
   state = {
@@ -35,24 +36,29 @@ export default class Auth extends Component {
   };
 
   render() {
-    const { error } = this.state;
+    const { error, login, password } = this.state;
     return (
       <AuthContainer>
         <LoginBox>
           <LogoContainer>
             <img src={Logo} alt="Codio Git" />
-            <h1> Codio </h1>
           </LogoContainer>
 
-          <form onSubmit={ev => this.handleSubmit(ev)}>
+          <div className="message">
+            <h1> Welcome, </h1>
+            <h2>Sign in to continue</h2>
+          </div>
+
+          <form onSubmit={ev => this.handleSubmit(ev)} autoComplete={false}>
             <div id="login-container">
-              <Label id="login-label" htmlFor="login">
+              <Label id="login-label" fill={!!login} htmlFor="login">
                 {' '}
-                Enter your username:<span>*</span>
+                Enter your username
               </Label>
               <Input
                 id="login"
                 type="text"
+                autoComplete={false}
                 onFocus={() => {
                   const loginField = document.getElementById('login-container');
                   loginField.classList.add('active');
@@ -66,13 +72,14 @@ export default class Auth extends Component {
             </div>
 
             <div id="password-container">
-              <Label id="password-label" htmlFor="password">
-                {' '}
-                Enter your password:<span>*</span>
+              <Label id="password-label" fill={!!password} htmlFor="password">
+                Enter your password
               </Label>
+
               <Input
                 id="password"
                 type="password"
+                autoComplete={false}
                 onFocus={() => {
                   const passwordField = document.getElementById(
                     'password-container'
@@ -88,10 +95,11 @@ export default class Auth extends Component {
                 onChange={ev => this.setState({ password: ev.target.value })}
               />
             </div>
-
             {error && <Error>{error}</Error>}
-
-            <SubmitButton error={!!error}> Login </SubmitButton>
+            <SubmitButton error={!!error}>
+              Login
+              <FaArrowRight />
+            </SubmitButton>
           </form>
         </LoginBox>
       </AuthContainer>

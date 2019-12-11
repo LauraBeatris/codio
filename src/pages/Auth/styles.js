@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const AuthContainer = styled.div`
   min-height: 100vh;
-  background: #252429;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,11 +18,13 @@ export const LogoContainer = styled.div`
   margin-bottom: 1rem;
 
   img {
-    height: 12rem;
+    height: 5rem;
+    position: absolute;
+    margin-left: 1rem;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     text-transform: lowercase;
     letter-spacing: 0.1rem;
@@ -33,7 +35,6 @@ export const LogoContainer = styled.div`
   }
 `;
 export const LoginBox = styled.div`
-  background: #fff;
   border-radius: 0.5rem;
   padding: 2rem;
   width: 30rem;
@@ -42,8 +43,22 @@ export const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  box-shadow: 0.5rem 0.5rem 2rem 1rem rgba(0, 0, 0, 0.4);
+  align-items: flex-start;
+
+  .message {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+
+    h1 {
+      font-weight: bold;
+    }
+
+    h2 {
+      text-transform: lowercase;
+      font-weight: 500;
+      color: #6a6b6f;
+    }
+  }
 
   form {
     width: 100%;
@@ -54,9 +69,7 @@ export const LoginBox = styled.div`
     }
 
     div.active label {
-      transform: translateX(-6px) scale(0.9);
-      color: #38373d;
-      font-weight: 500;
+      opacity: 0;
     }
 
     div:last-of-type {
@@ -66,39 +79,34 @@ export const LoginBox = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 1.3rem;
-  z-index: 11;
-  margin-bottom: 1rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 400;
   display: block;
-  top: 0.5rem;
-  left: 0.8rem;
   transition: all 0.2s ease-in-out;
+  color: #6a6b6f;
+
+  ${props =>
+    props.fill &&
+    css`
+      display: none;
+    `}
+
   position: absolute;
-
-  span {
-    color: red;
-  }
-
-  &:focus {
-    color: red;
-  }
+  bottom: 10%;
 `;
 
 export const Input = styled.input`
-  z-index: 10;
-  display: block;
-  padding: 3.2rem 1rem 2rem 1rem;
   width: 100%;
   height: 2rem;
   font-size: 1.4rem;
   font-weight: bold;
 
-  border-width: 1px;
-  border-radius: 0.8rem;
-  border-color: #252429;
+  border-width: 0px 0px 2.5px 0px;
+  border-color: #a5a5a5;
   background-repeat: no-repeat;
   color: #403b33;
+
+  transition: 0.5s all ease;
 
   &:last-of-type {
     margin-top: 1.5rem;
@@ -108,33 +116,39 @@ export const Input = styled.input`
   &:focus {
     cursor: pointer;
   }
+
+  &:focus {
+    border-color: #403b33;
+  }
 `;
 
 export const SubmitButton = styled.button.attrs({ type: 'submit' })`
+  display: flex;
+  align-items: center;
+
   border: none;
   border-radius: 0.8rem;
-  background: ${props => (props.error ? '#4b4a51' : '#403b33')};
+  background: #fff;
 
-  color: #fff;
+  color: #403b33;
   font-size: 1.5rem;
   font-weight: 500;
   font-weight: 600;
 
   margin-top: 2rem;
-  padding: 1rem;
 
-  width: 100%;
-  box-shadow: 0.1rem 0.1rem 2rem 0.5rem rgba(0, 0, 0, 0.3);
+  svg {
+    margin-left: 0.5rem;
+  }
 
   transition: 0.35s all ease-in-out;
 
   &:hover {
-    background: #161519;
-    transform: translateY(-0.35rem);
+    transform: translateX(0.35rem);
   }
 
   &:active {
-    transform: translateY(0rem);
+    transform: translateX(0rem);
   }
 `;
 

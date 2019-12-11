@@ -25,4 +25,11 @@ export const FileItemContainer = styled.div`
     font-weight: 400;
     margin-left: 4.3rem;
   }
+
+  p {
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
 `;
