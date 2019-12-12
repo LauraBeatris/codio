@@ -2,18 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { FaStar, FaJs, FaDocker, FaHtml5 } from 'react-icons/fa';
+import {
+  FaStar,
+  FaJs,
+  FaDocker,
+  FaHtml5,
+  FaCss3Alt,
+  FaJava,
+  FaPython,
+} from 'react-icons/fa';
 import { MdCallSplit } from 'react-icons/md';
 import { RepositoryBox, RepositoryDetails } from './styles';
 
 export default function Repository({
   stars,
   forks,
-  languages,
+  language,
   name,
   description,
 }) {
-  // const languagesData = Object.keys(languages);
+  let icon = null;
+  const languages = {
+    HTML: <FaHtml5 color="red" />,
+    JavaScript: <FaJs color="yellow" />,
+    CSS: <FaCss3Alt color="blue" />,
+    Java: <FaJava />,
+    Python: <FaPython color="#346B9C" />,
+  };
+  icon = languages[language];
+
   return (
     <RepositoryBox>
       <div className="repository-info">
@@ -43,22 +60,11 @@ export default function Repository({
           )}
         </div>
 
-        {/* {languagesData.length > 0 && (
-          <div className="languages-container">
-            {languagesData.map((language, key) => {
-              let icon;
-              if (language === 'HTML') icon = <FaHtml5 color="red" />;
-              if (language === 'JavaScript') icon = <FaJs color="yellow" />;
-              if (language === 'Dockerfile') icon = <FaDocker color="blue" />;
-
-              return (
-                <p key={String(key)}>
-                  {icon} {language}
-                </p>
-              );
-            })}
-          </div>
-        )} */}
+        <div className="languages-container">
+          <p>
+            {icon} {language}
+          </p>
+        </div>
       </RepositoryDetails>
     </RepositoryBox>
   );
@@ -67,7 +73,7 @@ export default function Repository({
 Repository.propTypes = {
   stars: PropTypes.number.isRequired,
   forks: PropTypes.number.isRequired,
-  // languages: PropTypes.shape({}).isRequired,
+  language: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };

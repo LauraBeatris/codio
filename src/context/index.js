@@ -65,9 +65,7 @@ class InitProvider extends Component {
 export const InitConsumer = InitContext.Consumer;
 
 InitProvider.propTypes = {
-  children: PropTypes.element.isRequired,
-  session: PropTypes.shape({ updateValues: PropTypes.func.isRequired })
-    .isRequired,
+  children: PropTypes.array.isRequired,
 };
 
 export default withRouter(InitProvider);

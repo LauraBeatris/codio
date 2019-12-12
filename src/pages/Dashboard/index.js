@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Header from '../../components/shared/Header';
 import Repository from '../../components/RepositoryBox';
@@ -24,44 +25,20 @@ class Dashboard extends Component {
 
     // Getting the user repositories and after the promise being rejected/resolved it will set the loading to false
     if (!session.repositories) {
-      const repos = await GithubApi.getRepositories()
-        .then(res => res.data)
-        .catch(() =>
-          this.setState({ error: 'Was not possible to load the repositories' })
-        )
+      GithubApi.getRepositories()
+        .then(repositories => {
+          this.setState({ repositories });
+          return session.updateValues({ repositories });
+        })
+        .catch(err => {
+          console.log('error', err);
+          return this.setState({
+            error: 'Was not possible to load the repositories',
+          });
+        })
         .then(() => this.setState({ loading: false }));
-      console.log(repos);
     }
   }
-
-  savingRepositories = async repos => {
-    const { error } = this.state;
-    const { session } = this.props;
-
-    // // Verifing if the repositories is not null and if there's no error
-    // // if (repos && repos.length > 0 && !error) {
-    // //   // Getting the languages used in this repo
-    // //   const repositories = repos.map(async r => {
-    // //     const languages = await GithubApi.getLanguages(r.languages_url)
-    // //       .then(res => res)
-    // //       .catch(err => {
-    // //         throw new Error('Was not possible to load the languages');
-    // //       });
-
-    // //     const repoWithLanguages = {
-    // //       ...r,
-    // //       languages,
-    // //     };
-    // //     console.log(repoWithLanguages);
-
-    // //     return repoWithLanguages;
-    // //   });
-
-    //   // this.setState({ repositories });
-
-    //   session.updateValues({ repositories });
-    // }
-  };
 
   render() {
     const { repositories, loading } = this.state;
@@ -82,7 +59,7 @@ class Dashboard extends Component {
                   description={r.description}
                   stars={r.starsgazers_count}
                   forks={r.forks_count}
-                  // languages={r.languages}
+                  language={r.language}
                 />
               ))}
             </Repositories>
@@ -97,6 +74,13 @@ class Dashboard extends Component {
     );
   }
 }
+
+Dashboard.propTypes = {
+  session: PropTypes.shape({
+    repositories: PropTypes.array.isRequired,
+    updateValues: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 const ContextDashboard = props => (
   <InitConsumer>

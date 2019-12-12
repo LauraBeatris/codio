@@ -22,38 +22,11 @@ class GithubApi {
   }
 
   // Getting the repositories of the user
-  async getRepositories() {
-    const repositories = await this.api
-      .get(`/users/${this.login}/repos`)
-      .then(async res => {
-        const repositories = res.data;
-        console.log(repositories);
-
-        // Getting the languages used in this repo
-        const withLanguages = await Promise.all(
-          repositories.map(async r => {
-            const languages = await this.getLanguages(r.languages_url).then(
-              res => res
-            );
-            const repoWithLanguages = {
-              ...r,
-              languages,
-            };
-            return repoWithLanguages;
-          })
-        );
-        return withLanguages;
-      })
-      .catch(err => err);
-
-    return repositories;
-  }
-
-  getLanguages(endpoint) {
+  getRepositories() {
     return new Promise((resolve, reject) => {
-      axios
-        .get(endpoint)
-        .then(res => resolve(res.data))
+      this.api
+        .get(`/users/${this.login}/repos`)
+        .then(async res => resolve(res.data))
         .catch(err => reject(err));
     });
   }
