@@ -10,14 +10,14 @@ import {
 } from './styles';
 
 import ProjectImage from '../../../assets/project.png';
-import ProfileImage from '../../../assets/profile.png';
 
-export default function Header({ hasProjectInfo, title }) {
+export default function Header({ hasProjectInfo, title, user }) {
+  const { avatar_url } = user;
   return (
     <HeaderContainer hasProjectInfo={hasProjectInfo || title}>
       {hasProjectInfo && (
         <ProjectHeader>
-          <img src={ProjectImage} alt="project name" />
+          <img src={avatar_url} alt="profile user" />
           <p> Project Name </p>
         </ProjectHeader>
       )}
@@ -27,7 +27,7 @@ export default function Header({ hasProjectInfo, title }) {
           <FaBell size="30" color="#333238" />
           <div className="count">5</div>
         </Notification>
-        <img src={ProfileImage} alt="profile" />
+        <img src={avatar_url} alt="profile" />
       </Profile>
     </HeaderContainer>
   );

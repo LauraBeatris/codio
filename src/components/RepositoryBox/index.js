@@ -13,7 +13,7 @@ export default function Repository({
   name,
   description,
 }) {
-  const languagesData = Object.keys(languages);
+  // const languagesData = Object.keys(languages);
   return (
     <RepositoryBox>
       <div className="repository-info">
@@ -43,7 +43,7 @@ export default function Repository({
           )}
         </div>
 
-        {languagesData.length > 0 && (
+        {/* {languagesData.length > 0 && (
           <div className="languages-container">
             {languagesData.map((language, key) => {
               let icon;
@@ -58,7 +58,7 @@ export default function Repository({
               );
             })}
           </div>
-        )}
+        )} */}
       </RepositoryDetails>
     </RepositoryBox>
   );
@@ -67,7 +67,7 @@ export default function Repository({
 Repository.propTypes = {
   stars: PropTypes.number.isRequired,
   forks: PropTypes.number.isRequired,
-  languages: PropTypes.shape({}).isRequired,
+  // languages: PropTypes.shape({}).isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };

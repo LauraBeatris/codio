@@ -4,6 +4,12 @@ export const ProjectsContainer = styled.div`
   font-size: 1.2rem;
   font-weight: 500;
   color: #252429;
+
+  p.no-repos-message {
+    font-weight: bold;
+    color: #dc5945;
+    padding: 0rem 0.8rem;
+  }
 `;
 
 export const Repositories = styled.div`

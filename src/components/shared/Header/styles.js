@@ -25,11 +25,17 @@ export const Profile = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+
+  img {
+    height: 2.3rem;
+    border-radius: 50%;
+  }
 `;
 
 export const Notification = styled.div`
   position: relative;
   margin-right: 1rem;
+  margin-top: 0.5rem;
 
   .count {
     position: absolute;
