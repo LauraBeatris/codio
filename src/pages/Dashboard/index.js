@@ -26,9 +26,13 @@ class Dashboard extends Component {
     };
   }
 
+  static defaultProps = {
+    repositories: [],
+  };
+
   static propTypes = {
     session: PropTypes.shape({
-      repositories: PropTypes.array.isRequired,
+      repositories: PropTypes.array,
       updateValues: PropTypes.func.isRequired,
       user: PropTypes.shape.isRequired,
     }).isRequired,
@@ -36,24 +40,27 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     const { session } = this.props;
+    const { repositories } = session;
     this.setState({ loading: true });
 
     // Getting the user repositories and after the promise being rejected/resolved it will set the loading to false
-    if (!session.repositories) {
+    if (!repositories) {
       GithubApi.getRepositories()
-        .then(repositories => {
+        .then(res => {
           this.setState({
             repositories,
             total: repositories.length,
           });
-          return session.updateValues({ repositories });
+          return session.updateValues({ repositories: res });
         })
-        .catch(err => {
-          return this.setState({
+        .catch(() =>
+          this.setState({
             error: 'Was not possible to load the repositories',
-          });
-        })
+          })
+        )
         .then(() => this.setState({ loading: false }));
+    } else {
+      this.setState({ loading: false, repositories });
     }
   }
 
@@ -107,7 +114,7 @@ class Dashboard extends Component {
                       key={String(key)}
                       name={r.name}
                       description={r.description}
-                      stars={r.starsgazers_count}
+                      stars={r.stargazers_count}
                       forks={r.forks_count}
                       language={r.language}
                     />
@@ -121,7 +128,7 @@ class Dashboard extends Component {
           )}
 
           <MoreButton onClick={ev => this.handlePageChange(9)}>
-            View More
+            Load
             <FaAngleDoubleRight />
           </MoreButton>
         </ProjectsContainer>

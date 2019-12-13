@@ -86,7 +86,7 @@ export const Label = styled.label`
   color: #6a6b6f;
 
   ${props =>
-    props.fill &&
+    props.filled &&
     css`
       display: none;
     `}

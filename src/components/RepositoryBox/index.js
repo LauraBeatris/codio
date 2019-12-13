@@ -46,7 +46,7 @@ export default function Repository({
         <div className="stars-and-forks">
           {stars > 0 && (
             <div className="stars-container">
-              <FaStar id="start" />
+              <FaStar id="start" color="#fcd445" />
               <p className="stars-count">{stars}</p>
             </div>
           )}
@@ -69,10 +69,16 @@ export default function Repository({
   );
 }
 
+Repository.defaultProps = {
+  stars: 0,
+  description: '',
+  language: '',
+};
+
 Repository.propTypes = {
-  stars: PropTypes.number.isRequired,
+  stars: PropTypes.number,
   forks: PropTypes.number.isRequired,
-  language: PropTypes.string.isRequired,
+  language: PropTypes.string,
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
 };

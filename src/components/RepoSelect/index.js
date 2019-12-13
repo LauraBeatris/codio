@@ -9,7 +9,6 @@ export default function RepoSelect({
   borderColor,
   text,
 }) {
-  console.log(borderColor);
   return (
     <SelectContainer
       class="select-wrapper"

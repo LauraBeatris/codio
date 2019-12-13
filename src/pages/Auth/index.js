@@ -58,16 +58,15 @@ class Auth extends Component {
             <h2>Sign in to continue</h2>
           </div>
 
-          <form onSubmit={ev => this.handleSubmit(ev)} autoComplete={false}>
+          <form onSubmit={ev => this.handleSubmit(ev)} autoComplete="false">
             <div id="login-container">
-              <Label id="login-label" fill={!!login} htmlFor="login">
+              <Label id="login-label" filled={Boolean(login)} htmlFor="login">
                 {' '}
                 Enter your git username
               </Label>
               <Input
                 id="login"
                 type="text"
-                autoComplete={false}
                 onFocus={() => {
                   const loginField = document.getElementById('login-container');
                   loginField.classList.add('active');

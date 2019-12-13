@@ -46,6 +46,10 @@ export const RepositoryDetails = styled.div`
   font-size: 0.9rem;
   margin-bottom: 0.3rem;
 
+  font-weight: 400;
+  color: #666666;
+  font-size: 0.9rem;
+
   .stars-and-forks {
     display: flex;
     justify-content: center;

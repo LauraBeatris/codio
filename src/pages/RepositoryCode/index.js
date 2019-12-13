@@ -19,12 +19,13 @@ import {
   CommitsContainer,
 } from './styles';
 
-function Repository() {
+function Repository({ session }) {
+  const { user } = session;
   return (
     <Layout>
       <RepoContainer>
         <HeaderContainer>
-          <MainHeader hasProjectInfo />
+          <MainHeader hasProjectInfo user={user} />
 
           <HeaderInfo>
             <p> Pacman Artifical Inteligence Python Project by Laura </p>
@@ -50,4 +51,4 @@ const RepositoryConsumer = props => (
   </InitConsumer>
 );
 
-export default RepositoryConsumer;
+export { RepositoryConsumer as default, Repository };
