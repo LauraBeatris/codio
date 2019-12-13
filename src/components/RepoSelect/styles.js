@@ -42,13 +42,23 @@ export const SelectContainer = styled.div`
   select:hover .select-wrapper {
     background: #000;
   }
-  padding: 0.5rem 1.4rem;
 
   select {
     opacity: 0;
     width: 100%;
     padding: 0.5rem 1.4rem;
     cursor: pointer;
+
+    option {
+      background-color: #fff;
+      padding: 0.5rem 0rem;
+      font-size: 0.9rem;
+
+      &:hover,
+      &:focus {
+        background-color: #fff;
+      }
+    }
   }
 `;
 
