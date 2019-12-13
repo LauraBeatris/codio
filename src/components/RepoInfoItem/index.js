@@ -8,7 +8,7 @@ import {
 } from 'react-icons/fa';
 import { FileContainer } from './styles';
 
-export default function FileItem({ item }) {
+export default function FileItem({ title, value }) {
   // Setting the icon for the icon based on the title
   const getIcon = title => {
     let icon;
@@ -21,13 +21,12 @@ export default function FileItem({ item }) {
     return icon;
   };
 
-  const { number, title } = item;
   const icon = getIcon(title);
   return (
     <FileContainer>
       {icon}
       <div>
-        <strong>{number}</strong>
+        <strong>{value}</strong>
         <p>{title}</p>
       </div>
     </FileContainer>

@@ -24,13 +24,19 @@ class Auth extends Component {
   handleSubmit = async ev => {
     ev.preventDefault();
     const { login } = this.state;
-    const { history, session } = this.props;
 
     // Doing a simple validation
     if (!login)
       return this.setState({ error: 'Please, provide a valid login' });
 
-    // Doing the request to get user data
+    await this.handleLogin(login);
+    return this.handleAuthentication();
+  };
+
+  // Doing the request to get user data
+  handleLogin = async login => {
+    const { history, session } = this.props;
+
     let user = null;
     await GithubApi.getUser(login)
       .then(res => {
@@ -42,6 +48,10 @@ class Auth extends Component {
     await session.updateValues({ user });
     // Redirecting to the dashboard
     return user && history.push('/dashboard/repositories');
+  };
+
+  handleAuthentication = async () => {
+    await GithubApi.postAuthentication();
   };
 
   render() {

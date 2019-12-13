@@ -9,17 +9,18 @@ import {
   Notification,
 } from './styles';
 
-function Header({ hasProjectInfo, title, user }) {
+function Header({ projectTitle, user }) {
   const { avatar_url } = user;
   return (
-    <HeaderContainer hasProjectInfo={hasProjectInfo || title}>
-      {hasProjectInfo && (
+    <HeaderContainer hasProjectInfo={!!projectTitle}>
+      {projectTitle ? (
         <ProjectHeader>
           <img src={avatar_url} alt="profile user" />
-          <p> Project Name </p>
+          <p className="project-title"> {projectTitle} </p>
         </ProjectHeader>
+      ) : (
+        'Repositories'
       )}
-      {!!title && <p> {title} </p>}
       <Profile>
         <Notification>
           <FaBell size="30" color="#333238" />
@@ -32,12 +33,10 @@ function Header({ hasProjectInfo, title, user }) {
 }
 
 Header.defaultProps = {
-  hasProjectInfo: false,
   title: '',
 };
 
 Header.propTypes = {
-  hasProjectInfo: PropTypes.bool,
   title: PropTypes.string,
 };
 

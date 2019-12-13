@@ -12,8 +12,8 @@ export default function RepoInfo({ info }) {
       paddingDesk="2.5rem 2rem"
       paddingMob="1rem 0rem"
     >
-      {info.map((item, key) => (
-        <RepoItem item={item} key={String(key)} />
+      {Object.keys(info).map((item, key) => (
+        <RepoItem title={item} value={info[item]} key={String(key)} />
       ))}
     </RepoInfoContainer>
   );

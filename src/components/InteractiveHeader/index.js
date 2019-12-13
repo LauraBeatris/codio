@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FaEye, FaHistory } from 'react-icons/fa';
 
 import { Container } from './styles';
 import RepoSelect from '../RepoSelect';
 import RepoButton from '../RepoButton';
 
-export default function InteractiveHeader() {
+export default function InteractiveHeader({ options }) {
+  const { watchers, keys, branches } = options;
   return (
     <Container>
       <div id="first-column">
@@ -14,11 +16,12 @@ export default function InteractiveHeader() {
           textColor="#3f3838"
           text="Master"
           borderColor="#3f3838"
+          options={branches}
         />
       </div>
       <div id="second-column">
         <RepoButton icon={<FaHistory size="20" />} />
-        <RepoButton isWatch number="5" icon={<FaEye size="20" />} />
+        <RepoButton isWatch number={watchers} icon={<FaEye size="20" />} />
         <RepoSelect
           backgroundColor="#3BB249"
           textColor="#fff"
@@ -28,3 +31,7 @@ export default function InteractiveHeader() {
     </Container>
   );
 }
+
+InteractiveHeader.propTypes = {
+  branches: PropTypes.shape.isRequired,
+};

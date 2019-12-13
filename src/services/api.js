@@ -22,15 +22,45 @@ class GithubApi {
     });
   }
 
+  // Getting the auth token of the user
+  postAuthentication(login, password) {
+    return new Promise((resolve, reject) => {
+      this.api
+        .post('/user', { username: 'LauraBeatris', password: 'Eamsc4544' })
+        .then(res => resolve(console.log(res.data)))
+        .catch(err => reject(console.log(err)));
+    });
+  }
+
   // Getting the repositories of the user
   getRepositories() {
-    console.log(this.login);
     return new Promise((resolve, reject) => {
       this.api
         .get(`/users/${this.login}/repos`)
         .then(async res => resolve(res.data))
         .catch(err => reject(err));
     });
+  }
+
+  // Getting the data from a single repo
+  getRepository(name) {
+    const getRepo = this.api.get(`/repos/${this.login}/${name}`);
+    const getBranches = this.api.get(`/repos/${this.login}/${name}/branches`);
+    const getCommits = this.api.get(`/repos/${this.login}/${name}/commits`);
+    const getReleases = this.api.get(`/repos/${this.login}/${name}/releases`);
+    const getContributors = this.api.get(
+      `/repos/${this.login}/${name}/contributors`
+    );
+
+    return Promise.all([
+      getRepo,
+      getBranches,
+      getCommits,
+      getReleases,
+      getContributors,
+    ])
+      .then(res => res)
+      .catch(err => err);
   }
 }
 

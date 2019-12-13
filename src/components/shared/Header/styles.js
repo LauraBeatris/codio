@@ -2,10 +2,14 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
   display: flex;
-  justify-content: ${props =>
-    props.hasProjectInfo ? 'space-between' : 'flex-end'};
+  justify-content: space-between;
   align-items: center;
   padding: 0.8rem;
+
+  img {
+    height: 2.3rem;
+    border-radius: 50%;
+  }
 `;
 
 export const ProjectHeader = styled.div`
@@ -14,9 +18,10 @@ export const ProjectHeader = styled.div`
   align-items: center;
   color: #333238;
 
-  p {
+  p.project-title {
     font-weight: 500;
     font-size: 1.2rem;
+    margin-left: 0.5rem;
   }
 `;
 
@@ -25,11 +30,6 @@ export const Profile = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-
-  img {
-    height: 2.3rem;
-    border-radius: 50%;
-  }
 `;
 
 export const Notification = styled.div`
