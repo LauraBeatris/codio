@@ -67,7 +67,7 @@ class Dashboard extends Component {
     if (loading) return <Loading />;
 
     return (
-      <Layout>
+      <Layout actualPage={this.props.location.pathname}>
         <ProjectsContainer>
           {user && <Header title="Select a Repository" user={user} />}
           {!!repositories && repositories.length > 0 ? (
@@ -104,7 +104,7 @@ class Dashboard extends Component {
           )}
 
           <MoreButton onClick={ev => this.handlePageChange(9)}>
-            Load
+            Load More
             <FaAngleDoubleRight />
           </MoreButton>
         </ProjectsContainer>

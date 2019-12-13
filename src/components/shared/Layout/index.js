@@ -1,6 +1,7 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import {
   FaCode,
   FaExclamationCircle,
@@ -57,12 +58,19 @@ export default function Layout({
     });
   };
 
+  const atHome = actualPage === '/dashboard/repositories';
+
   return (
     <GridContainer>
       <Aside>
         <LogoContainer>
-          <img src={Logo} alt="Codio Git" />
-          <p> Codio </p>
+          <Link
+            to="/dashboard/repositories"
+            title={!atHome ? 'Back to dashboard' : 'Codio'}
+          >
+            <img src={Logo} alt="Codio Git" />
+            <p> Codio </p>
+          </Link>
         </LogoContainer>
 
         <ProjectList>

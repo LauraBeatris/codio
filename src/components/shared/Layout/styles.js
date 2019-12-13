@@ -52,23 +52,26 @@ export const Aside = styled.aside`
 `;
 
 export const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    position: relative;
+    margin: 1rem;
+    padding-bottom: 1rem;
 
-  position: relative;
-  margin: 1rem;
-  padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  img {
-    height: 3rem;
-  }
+    img {
+      height: 3rem;
+    }
 
-  p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #fff;
+    p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #fff;
+    }
   }
 `;
 
