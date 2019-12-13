@@ -51,6 +51,10 @@ class GithubApi {
     const getContributors = this.api.get(
       `/repos/${this.login}/${name}/contributors`
     );
+    const getPullRequests = this.api.get(
+      `/repos/${this.login}/${name}/pulls?state=all`
+    );
+    const getIssues = this.api.get(`/repos/${this.login}/${name}/issues`);
 
     return Promise.all([
       getRepo,
@@ -58,6 +62,8 @@ class GithubApi {
       getCommits,
       getReleases,
       getContributors,
+      getPullRequests,
+      getIssues,
     ])
       .then(res => res)
       .catch(err => err);

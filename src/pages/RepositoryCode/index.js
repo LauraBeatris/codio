@@ -19,7 +19,7 @@ import {
   CommitsContainer,
 } from './styles';
 
-function Repository({ session, match }) {
+function Repository({ session, match, location }) {
   const { user } = session;
   const { repo: title } = match.params;
 
@@ -28,6 +28,8 @@ function Repository({ session, match }) {
   const [commits, setCommits] = useState([]);
   const [releases, setReleases] = useState([]);
   const [contributors, setContributors] = useState([]);
+  const [pullRequests, setPullRequests] = useState([]);
+  const [issues, setIssues] = useState([]);
 
   const [files, setFiles] = useState([]);
   const orderedFiles = orderFiles(files);
@@ -41,6 +43,8 @@ function Repository({ session, match }) {
         setCommits(res[2].data);
         setReleases(res[3].data);
         setContributors(res[4].data);
+        setPullRequests(res[5].data);
+        setIssues(res[6].data);
       });
     };
 
@@ -55,8 +59,16 @@ function Repository({ session, match }) {
     getFiles();
   }, []);
 
+  const items = [
+    { name: 'Code', active: location.pathname },
+    { name: 'Issues', number: issues.length, active: false },
+    { name: 'Pull Requests', number: pullRequests.length, active: false },
+    { name: 'Wiki', active: false },
+    { name: 'Insights', active: false },
+  ];
+
   return (
-    <Layout>
+    <Layout items={items} actualPage={location.pathname}>
       <RepoContainer>
         <HeaderContainer>
           <MainHeader projectTitle={title} user={user} />

@@ -67,7 +67,10 @@ class Dashboard extends Component {
     if (loading) return <Loading />;
 
     return (
-      <Layout actualPage={this.props.location.pathname}>
+      <Layout
+        actualPage={this.props.location.pathname}
+        items={[{ name: 'Dashboard', active: '/dashboard/repositories' }]}
+      >
         <ProjectsContainer>
           {user && <Header title="Select a Repository" user={user} />}
           {!!repositories && repositories.length > 0 ? (

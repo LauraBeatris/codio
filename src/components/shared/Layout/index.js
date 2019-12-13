@@ -22,22 +22,23 @@ import {
 } from './styles';
 import Logo from '../../../assets/transparent-logo.png';
 
-export default function Layout({
-  children,
-  issues,
-  pullRequests,
-  projects,
-  actualPage,
-}) {
+export default function Layout({ children, items, actualPage }) {
+  const authItems = [
+    { name: 'Sign In', active: '/' },
+    { name: 'Register', active: false },
+  ];
+
+  // Static Items - Just for layout
+  const codioHomeItems = [
+    'Feature',
+    'Business',
+    'Explore',
+    'Marketplace',
+    'Pricing',
+  ];
+
+  // Rendering the items that are passed for each page
   const renderItems = () => {
-    const items = [
-      { name: 'Code', active: false },
-      { name: 'Issues', number: issues, active: false },
-      { name: 'Pull Requests', number: pullRequests, active: false },
-      { name: 'Projects', number: projects, active: false },
-      { name: 'Wiki', active: false },
-      { name: 'Insights', active: false },
-    ];
     const icons = [
       <FaCode size="24" />,
       <FaExclamationCircle size="24" />,
@@ -49,7 +50,7 @@ export default function Layout({
 
     return items.map((i, key) => {
       return (
-        <Item key={String(key)} active={i.active}>
+        <Item key={String(key)} active={i.active === actualPage}>
           {icons[key]}
           <p className="name">{i.name}</p>
           {i.number !== undefined && <p className="number">{i.number}</p>}
@@ -80,22 +81,30 @@ export default function Layout({
 
         <CodioHome>
           <li className="title"> Codio Home </li>
-          {['Feature', 'Business', 'Explore', 'Marketplace', 'Pricing'].map(
-            (i, key) => (
-              <Item key={String(key)}>
-                <p id="name">{i}</p>
-              </Item>
-            )
-          )}
-          <div className="last" />
-        </CodioHome>
-
-        <AuthItems>
-          {['Sign In', 'Register'].map((i, key) => (
+          {codioHomeItems.map((i, key) => (
             <Item key={String(key)}>
               <p id="name">{i}</p>
             </Item>
           ))}
+          <div className="last" />
+        </CodioHome>
+
+        <AuthItems>
+          {authItems.map((i, key) =>
+            i.name === 'Sign In' ? (
+              <Item
+                key={String(key)}
+                onClick={() => window.location.replace('/')}
+                active={i.active === actualPage}
+              >
+                <p id="name">{i.name}</p>
+              </Item>
+            ) : (
+              <Item key={String(key)} active={i.active === actualPage}>
+                <p id="name">{i.name}</p>
+              </Item>
+            )
+          )}
         </AuthItems>
       </Aside>
       {children}
