@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaBell } from 'react-icons/fa';
 
-import { InitConsumer } from '../../../context';
 import {
   HeaderContainer,
   ProjectHeader,
@@ -10,10 +9,8 @@ import {
   Notification,
 } from './styles';
 
-import ProjectImage from '../../../assets/project.png';
-
-function Header({ hasProjectInfo, title, user, session }) {
-  const { avatar_url } = session.user;
+function Header({ hasProjectInfo, title, user }) {
+  const { avatar_url } = user;
   return (
     <HeaderContainer hasProjectInfo={hasProjectInfo || title}>
       {hasProjectInfo && (
@@ -44,10 +41,4 @@ Header.propTypes = {
   title: PropTypes.string,
 };
 
-const HeaderConsumer = props => (
-  <InitConsumer>
-    {session => <Header {...props} session={session} />}
-  </InitConsumer>
-);
-
-export { HeaderConsumer as default, Header };
+export default Header;

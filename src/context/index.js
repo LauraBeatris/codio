@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import GithubApi from '../services/api';
 
 export const InitContext = React.createContext({});
 
@@ -9,18 +10,26 @@ class InitProvider extends Component {
     super(props);
     this.state = {
       choosedRepository: null,
-      repositories: null,
-      user: null,
+      repositories:
+        JSON.parse(localStorage.getItem('codio_repositories')) || null,
+      user: JSON.parse(localStorage.getItem('codio_user')) || null,
+      loading: false,
+      error: null,
       updateValues: data => this.updateValues(data),
     };
   }
 
   async componentDidMount() {
-    await this.bootstrap();
-    this.withoutDataRedirect();
+    // Verifing if the session has the user data, if not, it will redirect to the login page
+    // Blocking problems with requests that doesn't have the user data
+    await this.withoutUserRedirect();
+
+    // Loading repositories
+    await this.loadRepositories();
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // Updating the user and repositories data on the localStorage
     const { user, repositories } = this.state;
     if (user !== prevState.user) {
       localStorage.setItem('codio_user', JSON.stringify(user));
@@ -33,25 +42,24 @@ class InitProvider extends Component {
     }
   }
 
+  // Updating the values of context state
   updateValues = data => {
     return this.setState({ ...this.state, ...data });
   };
 
-  // Verifing if the session has the user data, if not, it will redirect to the login page
-  // Blocking problems with requests that doesn't have the user data
-  withoutDataRedirect = () => {
-    const { user } = this.state;
-    if (!user) {
-      window.location.href = '/';
-    }
+  // Bootstrap function to load the repositories
+  loadRepositories = async () => {
+    return GithubApi.getRepositories()
+      .then(repositories => this.setState({ repositories }))
+      .catch(error => this.setState({ error }));
   };
 
-  // Verifing if there's user or repositories data stored at localStorage and then saving in the state
-  bootstrap = () => {
-    const user = JSON.parse(localStorage.getItem('codio_user'));
-    const repositories = JSON.parse(localStorage.getItem('codio_repositories'));
-    if (user) this.setState({ user });
-    if (repositories) this.setState({ repositories });
+  // Redirecting the user to the auth page if there's no data related to him storage
+  withoutUserRedirect = () => {
+    if (!JSON.parse(localStorage.getItem('codio_user'))) {
+      const message = decodeURIComponent('Please, login to see the dashboard');
+      this.props.history.push(`/?message=${message}`);
+    }
   };
 
   render() {

@@ -10,16 +10,11 @@ import { InitConsumer } from '../../context';
 
 import Loading from '../../components/Loading';
 
-import GithubApi from '../../services/api';
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      repositories: null,
       pagedRepositories: null,
-      loading: true,
-      error: null,
       total: 0,
       currentPage: 0,
       currentLimit: 9,
@@ -35,38 +30,18 @@ class Dashboard extends Component {
       repositories: PropTypes.array,
       updateValues: PropTypes.func.isRequired,
       user: PropTypes.shape.isRequired,
+      loading: PropTypes.bool.isRequired,
+    }).isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func,
     }).isRequired,
   };
 
-  async componentDidMount() {
-    const { session } = this.props;
-    const { repositories } = session;
-    this.setState({ loading: true });
-
-    // Getting the user repositories and after the promise being rejected/resolved it will set the loading to false
-    if (!repositories) {
-      GithubApi.getRepositories()
-        .then(res => {
-          this.setState({
-            repositories,
-            total: repositories.length,
-          });
-          return session.updateValues({ repositories: res });
-        })
-        .catch(() =>
-          this.setState({
-            error: 'Was not possible to load the repositories',
-          })
-        )
-        .then(() => this.setState({ loading: false }));
-    } else {
-      this.setState({ loading: false, repositories });
-    }
-  }
-
   // Responsible for the pagination
   handlePageChange = count => {
-    const { repositories, currentPage, currentLimit } = this.state;
+    const { currentPage, currentLimit } = this.state;
+    const { session } = this.props;
+    const { repositories } = session;
 
     const pagedRepositories = repositories.slice(
       currentPage + count,
@@ -85,15 +60,16 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { repositories, pagedRepositories, loading } = this.state;
+    const { pagedRepositories } = this.state;
     const { session } = this.props;
-    const { user } = session;
+    const { user, repositories, loading } = session;
+
     if (loading) return <Loading />;
 
     return (
       <Layout>
         <ProjectsContainer>
-          <Header title="Select a Repository" user={user} />
+          {user && <Header title="Select a Repository" user={user} />}
           {!!repositories && repositories.length > 0 ? (
             <Repositories>
               {!pagedRepositories
