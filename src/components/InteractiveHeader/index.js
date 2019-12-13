@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FaEye, FaHistory } from 'react-icons/fa';
 
 import { Container } from './styles';
-import RepoSelect from '../RepoSelect';
+import BranchSelect, { DownloadOrClone } from '../RepoSelect';
 import RepoButton from '../RepoButton';
 
 export default function InteractiveHeader({ options }) {
@@ -18,12 +18,10 @@ export default function InteractiveHeader({ options }) {
     });
   }
 
-  console.log(formattedBranches);
-
   return (
     <Container>
       <div id="first-column">
-        <RepoSelect
+        <BranchSelect
           backgroundColor="#fff"
           textColor="#3f3838"
           text="Master"
@@ -34,7 +32,7 @@ export default function InteractiveHeader({ options }) {
       <div id="second-column">
         <RepoButton icon={<FaHistory size="20" />} />
         <RepoButton isWatch number={watchers} icon={<FaEye size="20" />} />
-        <RepoSelect
+        <DownloadOrClone
           backgroundColor="#3BB249"
           textColor="#fff"
           text="Clone or Download"

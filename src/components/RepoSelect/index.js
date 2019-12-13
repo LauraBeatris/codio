@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaSort, FaCloudDownloadAlt } from 'react-icons/fa';
-import { SelectContainer } from './styles';
+import { FaSort, FaCodeBranch, FaCloudDownloadAlt } from 'react-icons/fa';
+import {
+  SelectContainer,
+  CloneOrDownload,
+  DownloadOrCloneContainer,
+} from './styles';
 
 export default function RepoSelect({
   backgroundColor,
@@ -17,7 +21,7 @@ export default function RepoSelect({
       textColor={textColor}
       borderColor={borderColor}
     >
-      <FaCloudDownloadAlt color={textColor} class="download-icon" size="20" />
+      <FaCodeBranch color={textColor} class="download-icon" size="20" />
       <p>{text}</p>
       <FaSort color={textColor} class="select-icon" size="20" />
       <select>
@@ -27,6 +31,35 @@ export default function RepoSelect({
         )}
       </select>
     </SelectContainer>
+  );
+}
+
+export function DownloadOrClone({
+  backgroundColor,
+  textColor,
+  borderColor,
+  text,
+  options,
+}) {
+  const [step, setStep] = useState('');
+  const [active, setActive] = useState(false);
+  return (
+    <DownloadOrCloneContainer>
+      <SelectContainer
+        class="select-wrapper"
+        backgroundColor={backgroundColor}
+        onClick={() => setActive(!active)}
+        textColor={textColor}
+        borderColor={borderColor}
+      >
+        <FaCloudDownloadAlt color={textColor} class="download-icon" size="20" />
+        <p>{text}</p>
+        <FaSort color={textColor} class="select-icon" size="20" />
+      </SelectContainer>
+      <CloneOrDownload className="clone-or-download" active={active}>
+        <p> teste </p>
+      </CloneOrDownload>
+    </DownloadOrCloneContainer>
   );
 }
 

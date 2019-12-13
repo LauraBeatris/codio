@@ -29,6 +29,10 @@ export const FileItemContainer = styled.div`
   .commit-comment {
     font-weight: 400;
     margin-left: 4.3rem;
+
+    @media (min-width: 320px) and (max-width: 767px) {
+      font-size: 0.5rem;
+    }
   }
 
   .commit-date {

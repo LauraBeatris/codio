@@ -20,11 +20,20 @@ export const LastCommitContainer = styled.div`
       &.author-name {
         color: #3f3838;
       }
+
+      @media (min-width: 320px) and (max-width: 767px) {
+        font-size: 0.7rem;
+      }
     }
   }
 
-  p.sha-and-date span {
+  p.sha-and-date {
     font-weight: 500;
+    @media (min-width: 320px) and (max-width: 767px) {
+      font-size: 0.7rem;
+      line-height: 1rem;
+      margin-left: 0.2rem;
+    }
   }
 
   display: flex;
