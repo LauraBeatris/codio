@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaAngleDoubleRight } from 'react-icons/fa';
+import Helmet from 'react-helmet';
+
 import Header from '../../components/shared/Header';
 import Repository from '../../components/RepositoryBox';
 import Layout from '../../components/shared/Layout';
@@ -59,13 +61,16 @@ class Dashboard extends Component {
     const { session } = this.props;
     const { user, repositories, loading } = session;
 
-    if (loading) return <Loading />;
+    if (loading) return <Loading text="Loading Repositories" />;
 
     return (
       <Layout
         actualPage={this.props.location.pathname}
         items={[{ name: 'Dashboard', active: '/dashboard/repositories' }]}
       >
+        <Helmet>
+          <title> Codio | Repositories </title>
+        </Helmet>
         <ProjectsContainer>
           {user && <Header title="Select a Repository" user={user} />}
           {!!repositories && repositories.length > 0 ? (

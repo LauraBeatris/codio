@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Helmet from 'react-helmet';
 
 import { InitConsumer } from '../../context';
 import Layout from '../../components/shared/Layout';
@@ -7,6 +8,8 @@ import RepoInfo from '../../components/RepoInfo';
 import InteractiveHeader from '../../components/InteractiveHeader';
 import LastCommit from '../../components/LastCommit';
 import Files from '../../components/Files';
+
+import Loading from '../../components/Loading';
 
 import GithubApi from '../../services/api';
 
@@ -37,6 +40,8 @@ function Repository({ session, match, location }) {
   useEffect(() => {
     // Getting the data related to the repository
     const getRepo = async () => {
+      session.updateValues({ loading: true });
+
       await GithubApi.getRepository(title).then(res => {
         setRepository(res[0].data);
         setBranches(res[1].data);
@@ -45,6 +50,8 @@ function Repository({ session, match, location }) {
         setContributors(res[4].data);
         setPullRequests(res[5].data);
         setIssues(res[6].data);
+
+        session.updateValues({ loading: false });
       });
     };
 
@@ -67,8 +74,13 @@ function Repository({ session, match, location }) {
     { name: 'Insights', active: false },
   ];
 
+  if (session.loading) return <Loading text="Loading Repository..." />;
+
   return (
     <Layout items={items} atHome actualPage={location.pathname}>
+      <Helmet>
+        <title> Codio | {title} </title>
+      </Helmet>
       <RepoContainer>
         <HeaderContainer>
           <MainHeader projectTitle={title} user={user} />

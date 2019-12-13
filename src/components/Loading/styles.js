@@ -13,15 +13,19 @@ export const LoadingContainer = styled.div`
   width: 100vw;
   height: 100vh;
   background: #fff;
-  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
     height: 9rem;
+  }
 
-    transform: translate(-50%, -50%);
+  p {
+    font-size: 1rem;
+    text-align: center;
   }
 
   animation: ${jumping} 1.1s infinite alternate;

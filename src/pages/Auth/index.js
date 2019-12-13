@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import { FaArrowRight } from 'react-icons/fa';
+import queryString from 'query-string';
+import { FaArrowRight, FaExclamationTriangle } from 'react-icons/fa';
 
 import {
   AuthContainer,
@@ -21,6 +23,12 @@ class Auth extends Component {
     error: '',
   };
 
+  componentDidMount() {
+    const { location } = this.props;
+    const params = queryString.parse(location.search);
+    if (params && params.message) this.setState({ error: params.message });
+  }
+
   handleSubmit = async ev => {
     ev.preventDefault();
     const { login } = this.state;
@@ -29,8 +37,7 @@ class Auth extends Component {
     if (!login)
       return this.setState({ error: 'Please, provide a valid login' });
 
-    await this.handleLogin(login);
-    return this.handleAuthentication();
+    return this.handleLogin(login);
   };
 
   // Doing the request to get user data
@@ -38,7 +45,7 @@ class Auth extends Component {
     const { history, session } = this.props;
 
     let user = null;
-    await GithubApi.getUser(login)
+    await GithubApi.getUser(login.trim())
       .then(res => {
         user = res;
         return res;
@@ -58,6 +65,9 @@ class Auth extends Component {
     const { error, login } = this.state;
     return (
       <AuthContainer>
+        <Helmet>
+          <title> Codio | Welcome </title>
+        </Helmet>
         <LoginBox>
           <LogoContainer>
             <img src={Logo} alt="Codio Git" />
@@ -88,9 +98,13 @@ class Auth extends Component {
                 onChange={ev => this.setState({ login: ev.target.value })}
               />
             </div>
-            {error && <Error>{error}</Error>}
+            {error && (
+              <Error>
+                <FaExclamationTriangle color="#fff" /> {error}
+              </Error>
+            )}
             <SubmitButton error={!!error}>
-              Login
+              Sign in
               <FaArrowRight />
             </SubmitButton>
           </form>

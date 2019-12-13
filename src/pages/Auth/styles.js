@@ -161,4 +161,8 @@ export const Error = styled.div`
   text-align: center;
   color: #fff;
   transition: 0.5 all ease-in-out;
+
+  svg {
+    margin-right: 0.5rem;
+  }
 `;
