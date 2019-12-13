@@ -14,7 +14,12 @@ export function FileItem({ data }) {
     <FileItemContainer>
       <div>
         {icon}
-        <a href={data._links.html} target="_blank" className="file-name">
+        <a
+          href={data._links.html}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="file-name"
+        >
           {name}
         </a>
         <p className="commit-comment">{comment}</p>

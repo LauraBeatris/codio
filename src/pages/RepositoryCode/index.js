@@ -10,7 +10,7 @@ import Files from '../../components/Files';
 
 import GithubApi from '../../services/api';
 
-import orderFiles from '../../helpers/orderFiles';
+import { sortFiles } from '../../helpers/sort';
 
 import {
   HeaderInfo,
@@ -32,7 +32,7 @@ function Repository({ session, match, location }) {
   const [issues, setIssues] = useState([]);
 
   const [files, setFiles] = useState([]);
-  const orderedFiles = orderFiles(files);
+  const orderedFiles = sortFiles(files);
 
   useEffect(() => {
     // Getting the data related to the repository
@@ -57,7 +57,7 @@ function Repository({ session, match, location }) {
 
     getRepo();
     getFiles();
-  }, []);
+  }, [title]);
 
   const items = [
     { name: 'Code', active: location.pathname },
@@ -68,7 +68,7 @@ function Repository({ session, match, location }) {
   ];
 
   return (
-    <Layout items={items} actualPage={location.pathname}>
+    <Layout items={items} atHome actualPage={location.pathname}>
       <RepoContainer>
         <HeaderContainer>
           <MainHeader projectTitle={title} user={user} />

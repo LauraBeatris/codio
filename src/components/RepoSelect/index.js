@@ -108,7 +108,7 @@ export function DownloadOrClone({
             </button>
           </div>
         </div>
-        <a href={keys.download} target="_blank">
+        <a href={keys.download} target="_blank" rel="noopener noreferrer">
           {' '}
           Download ZIP{' '}
         </a>

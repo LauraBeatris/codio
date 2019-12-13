@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-/* Auth Pages */
 import Login from './pages/Auth';
+
 import Repositories from './pages/Dashboard';
 import RepositoryCode from './pages/RepositoryCode';
 

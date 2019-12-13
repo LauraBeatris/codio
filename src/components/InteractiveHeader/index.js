@@ -6,16 +6,14 @@ import { Container } from './styles';
 import BranchSelect, { DownloadOrClone } from '../RepoSelect';
 import RepoButton from '../RepoButton';
 
+import { sortBranches } from '../../helpers/sort';
+
 export default function InteractiveHeader({ options }) {
   const { watchers, keys, branches } = options;
 
-  let formattedBranches = null;
+  let sortedBranches = null;
   if (branches) {
-    formattedBranches = branches.sort((a, b) => {
-      if (a.name === 'master') {
-        return -1;
-      }
-    });
+    sortedBranches = sortBranches(branches);
   }
 
   return (
@@ -26,7 +24,7 @@ export default function InteractiveHeader({ options }) {
           textColor="#3f3838"
           text="Master"
           borderColor="#3f3838"
-          options={formattedBranches}
+          options={sortedBranches}
         />
       </div>
       <div id="second-column">

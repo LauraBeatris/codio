@@ -11,6 +11,17 @@ import { InitConsumer } from '../../context';
 import Loading from '../../components/Loading';
 
 class Dashboard extends Component {
+  static propTypes = {
+    session: PropTypes.shape({
+      updateValues: PropTypes.func.isRequired,
+      user: PropTypes.shape.isRequired,
+      loading: PropTypes.bool.isRequired,
+    }).isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func,
+    }).isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,22 +31,6 @@ class Dashboard extends Component {
       currentLimit: 9,
     };
   }
-
-  static defaultProps = {
-    repositories: [],
-  };
-
-  static propTypes = {
-    session: PropTypes.shape({
-      repositories: PropTypes.array,
-      updateValues: PropTypes.func.isRequired,
-      user: PropTypes.shape.isRequired,
-      loading: PropTypes.bool.isRequired,
-    }).isRequired,
-    history: PropTypes.shape({
-      push: PropTypes.func,
-    }).isRequired,
-  };
 
   // Responsible for the pagination
   handlePageChange = count => {

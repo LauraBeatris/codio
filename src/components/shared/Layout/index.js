@@ -75,7 +75,10 @@ export default function Layout({ children, items, actualPage }) {
         </LogoContainer>
 
         <ProjectList>
-          <li className="title"> Project </li>
+          <li className="title">
+            {' '}
+            {!atHome ? 'Project' : 'Select a repository'}{' '}
+          </li>
           {renderItems()}
         </ProjectList>
 
