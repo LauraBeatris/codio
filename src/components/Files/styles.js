@@ -18,7 +18,12 @@ export const FileItemContainer = styled.div`
 
   .file-name {
     text-transform: lowercase;
+    text-decoration: none;
     color: #3f3838;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .commit-comment {

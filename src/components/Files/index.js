@@ -14,7 +14,9 @@ export function FileItem({ data }) {
     <FileItemContainer>
       <div>
         {icon}
-        <p className="file-name">{name}</p>
+        <a href={data._links.html} target="_blank" className="file-name">
+          {name}
+        </a>
         <p className="commit-comment">{comment}</p>
       </div>
 

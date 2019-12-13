@@ -8,11 +8,9 @@ import InteractiveHeader from '../../components/InteractiveHeader';
 import LastCommit from '../../components/LastCommit';
 import Files from '../../components/Files';
 
-import info from './fixtures';
-import commitFixture from '../../components/LastCommit/fixtures';
-import filesFixture from '../../components/Files/fixtures';
-
 import GithubApi from '../../services/api';
+
+import orderFiles from '../../helpers/orderFiles';
 
 import {
   HeaderInfo,
@@ -25,25 +23,36 @@ function Repository({ session, match }) {
   const { user } = session;
   const { repo: title } = match.params;
 
-  const [repository, setRepository] = useState('');
-  const [branches, setBranches] = useState('');
-  const [commits, setCommits] = useState('');
-  const [releases, setReleases] = useState('');
-  const [contributors, setContributors] = useState('');
+  const [repository, setRepository] = useState([]);
+  const [branches, setBranches] = useState([]);
+  const [commits, setCommits] = useState([]);
+  const [releases, setReleases] = useState([]);
+  const [contributors, setContributors] = useState([]);
+
+  const [files, setFiles] = useState([]);
+  const orderedFiles = orderFiles(files);
 
   useEffect(() => {
+    // Getting the data related to the repository
     const getRepo = async () => {
-      const repo = await GithubApi.getRepository(title).then(res => {
+      await GithubApi.getRepository(title).then(res => {
         setRepository(res[0].data);
         setBranches(res[1].data);
         setCommits(res[2].data);
         setReleases(res[3].data);
         setContributors(res[4].data);
       });
-      return repo;
+    };
+
+    // Getting the files of the repository
+    const getFiles = async () => {
+      await GithubApi.getFiles(title).then(res => {
+        setFiles(res);
+      });
     };
 
     getRepo();
+    getFiles();
   }, []);
 
   return (
@@ -80,7 +89,7 @@ function Repository({ session, match }) {
           <div>
             {commits && commits[0] && <LastCommit commit={commits[0]} />}
           </div>
-          <Files files={filesFixture} />
+          {files && <Files files={orderedFiles} />}
         </CommitsContainer>
       </RepoContainer>
     </Layout>

@@ -8,6 +8,18 @@ import RepoButton from '../RepoButton';
 
 export default function InteractiveHeader({ options }) {
   const { watchers, keys, branches } = options;
+
+  let formattedBranches = null;
+  if (branches) {
+    formattedBranches = branches.sort((a, b) => {
+      if (a.name === 'master') {
+        return -1;
+      }
+    });
+  }
+
+  console.log(formattedBranches);
+
   return (
     <Container>
       <div id="first-column">
@@ -16,7 +28,7 @@ export default function InteractiveHeader({ options }) {
           textColor="#3f3838"
           text="Master"
           borderColor="#3f3838"
-          options={branches}
+          options={formattedBranches}
         />
       </div>
       <div id="second-column">
