@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaSort, FaCodeBranch, FaCloudDownloadAlt } from 'react-icons/fa';
+import {
+  FaSort,
+  FaCodeBranch,
+  FaCloudDownloadAlt,
+  FaCopy,
+} from 'react-icons/fa';
 import {
   SelectContainer,
   CloneOrDownload,
@@ -39,10 +44,22 @@ export function DownloadOrClone({
   textColor,
   borderColor,
   text,
-  options,
+  keys,
 }) {
-  const [step, setStep] = useState('');
+  const [method, setMethod] = useState(true);
   const [active, setActive] = useState(false);
+
+  const copyToClipboard = () => {
+    const input = document.querySelector('.clone-method');
+
+    // Selecting the text from the input field
+    input.select();
+    input.setSelectionRange(0, 99999); // For mobile devices
+
+    /* Copy the text inside the input field */
+    document.execCommand('copy');
+  };
+
   return (
     <DownloadOrCloneContainer>
       <SelectContainer
@@ -57,7 +74,44 @@ export function DownloadOrClone({
         <FaSort color={textColor} class="select-icon" size="20" />
       </SelectContainer>
       <CloneOrDownload className="clone-or-download" active={active}>
-        <p> teste </p>
+        <div>
+          <strong className="method">
+            {' '}
+            {method ? 'Clone with HTTPS' : 'Clone with SSH'}
+          </strong>
+          <button
+            type="button"
+            className="change-method"
+            onClick={ev => setMethod(!method)}
+          >
+            {method ? 'Use SSH' : 'Use HTTPS'}
+          </button>
+
+          <p>
+            {' '}
+            {method
+              ? 'Use Git or checkout with SVN using the web URL.'
+              : 'Use a password protected SSH key.'}{' '}
+          </p>
+
+          <div className="input-group">
+            <input
+              type="text"
+              className="clone-method"
+              name="clone-method"
+              readOnly
+              value={method ? keys.ssh : keys.https}
+            />
+            <button type="button" onClick={() => copyToClipboard()}>
+              {' '}
+              <FaCopy />{' '}
+            </button>
+          </div>
+        </div>
+        <a href={keys.download} target="_blank">
+          {' '}
+          Download ZIP{' '}
+        </a>
       </CloneOrDownload>
     </DownloadOrCloneContainer>
   );

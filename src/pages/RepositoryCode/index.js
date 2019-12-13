@@ -75,9 +75,9 @@ function Repository({ session, match }) {
               options={{
                 branches,
                 keys: {
-                  ssh: repository.ssh_key,
+                  ssh: repository.ssh_url,
                   https: repository.clone_url,
-                  download: repository.downloads_url,
+                  download: `${repository.html_url}/archive/master.zip`,
                 },
                 watchers: repository.watchers,
               }}

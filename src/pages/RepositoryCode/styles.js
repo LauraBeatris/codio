@@ -7,8 +7,9 @@ export const RepoContainer = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
-  flex: display;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const HeaderInfo = styled.div`

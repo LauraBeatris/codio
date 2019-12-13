@@ -36,6 +36,7 @@ export default function InteractiveHeader({ options }) {
           backgroundColor="#3BB249"
           textColor="#fff"
           text="Clone or Download"
+          keys={keys}
         />
       </div>
     </Container>
