@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import {
   FaStar,
   FaJs,
-  FaDocker,
   FaHtml5,
   FaCss3Alt,
   FaJava,

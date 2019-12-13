@@ -37,4 +37,32 @@ export const Repositories = styled.div`
   }
 `;
 
+export const MoreButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+
+  border: none;
+  font-weight: #252429;
+  font-size: 1.2rem;
+  color: #df5a46;
+
+  svg {
+    margin-left: 0.2rem;
+  }
+
+  margin: 1rem 0.8rem;
+
+  transition: 0.35s all ease-in-out;
+
+  &:hover {
+    transform: translateX(0.35rem);
+  }
+
+  &:active {
+    transform: translateX(0rem);
+  }
+`;
+
 export const Repository = styled.div``;

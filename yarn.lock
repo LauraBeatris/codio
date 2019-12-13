@@ -7327,6 +7327,11 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
+paging-algorithm@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/paging-algorithm/-/paging-algorithm-1.0.1.tgz#18abe482a6a202bfaab4b023a407c8cc2072cb8a"
+  integrity sha512-hYLG10yTytEcE7gaeLw5z1Rert4MHYiQNxzwLt59LHb3bKRBShDX/0BqX4tQoAK11tQzoqSFkUelc6ptagfy5w==
+
 pako@~1.0.5:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
@@ -8348,7 +8353,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.4, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8588,12 +8593,12 @@ react-notification-badge@^1.5.1:
   dependencies:
     core-js "3"
 
-react-paginate@^6.3.2:
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/react-paginate/-/react-paginate-6.3.2.tgz#4e18cbdb2654d308566775fa14df11e820188391"
-  integrity sha512-Ch++Njfv8UHpLtIMiQouAPeJQA5Ki86kIYfCer6c1B96Rvn3UF27se+goCilCP8oHNXNsA2R2kxvzanY1YIkyg==
+react-paginating@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/react-paginating/-/react-paginating-1.3.1.tgz#82ed62635a0ef5f1d33235fccbfa09a49b5ab8a0"
+  integrity sha512-1HunZcnQsAXLoMgy6v71ZQSqrfkrQ8lSIPAKM1OCE+n6VdV0Qih3UuyOV99+5mbnEOaHRQfecMBVFH2KLNOGIg==
   dependencies:
-    prop-types "^15.6.1"
+    paging-algorithm "^1.0.1"
 
 react-router-dom@^5.1.2:
   version "5.1.2"
