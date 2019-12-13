@@ -78,7 +78,7 @@ function Repository({ session, match }) {
 
         <CommitsContainer>
           <div>
-            <LastCommit data={commitFixture} />
+            {commits && commits[0] && <LastCommit commit={commits[0]} />}
           </div>
           <Files files={filesFixture} />
         </CommitsContainer>

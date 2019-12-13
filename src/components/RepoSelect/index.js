@@ -10,7 +10,6 @@ export default function RepoSelect({
   text,
   options,
 }) {
-  console.log(options);
   return (
     <SelectContainer
       class="select-wrapper"
@@ -36,4 +35,5 @@ RepoSelect.propTypes = {
   textColor: PropTypes.string.isRequired,
   borderColor: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };

@@ -26,6 +26,10 @@ export const FileItemContainer = styled.div`
     margin-left: 4.3rem;
   }
 
+  .commit-date {
+    font-weight: 500;
+  }
+
   p {
     &:hover {
       text-decoration: underline;

@@ -23,6 +23,10 @@ export const LastCommitContainer = styled.div`
     }
   }
 
+  p.sha-and-date span {
+    font-weight: 500;
+  }
+
   display: flex;
   justify-content: space-between;
   align-items: center;
