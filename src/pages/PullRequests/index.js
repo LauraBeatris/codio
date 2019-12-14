@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import MainHeader from '../../components/shared/Header';
+import moment from 'moment';
 
+import MainHeader from '../../components/shared/Header';
 import { InitConsumer } from '../../context';
 import { mainItems as items } from '../../fixtures/navItems';
 
-// import { Container } from './styles';
+import { Container, PullRequest, Title } from './styles';
 import Layout from '../../components/shared/Layout';
 import GithubApi from '../../services/api';
 
@@ -34,7 +35,7 @@ class PullRequests extends Component {
 
   render() {
     const { session } = this.props;
-    const { repository } = this.state;
+    const { repository, pullRequests } = this.state;
     const { loading } = session;
 
     if (loading) return <Loading text="Loading Pull Requests" />;
@@ -46,7 +47,20 @@ class PullRequests extends Component {
         <Helmet>
           <title> Codio | Pull Requests </title>
         </Helmet>
-        <p> {repository} </p>
+        <Container>
+          <Title> {repository} | Pull Requests </Title>
+          {pullRequests &&
+            pullRequests.map(p => (
+              <PullRequest>
+                <p> {p.title} </p>
+                <p> Status: {p.state} </p>
+                <p> Created at: {moment(p.created_at).fromNow()}</p>
+                {p.state === 'closed' && (
+                  <p> Closed at: {moment(moment.closed_at).fromNow()}</p>
+                )}
+              </PullRequest>
+            ))}
+        </Container>
       </Layout>
     );
   }

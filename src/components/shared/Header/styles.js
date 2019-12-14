@@ -6,9 +6,12 @@ export const HeaderContainer = styled.div`
   align-items: center;
   padding: 0.8rem;
 
+  img:not(.profile-icon) {
+    border-radius: 50%;
+  }
+
   img {
     height: 2.3rem;
-    border-radius: 50%;
   }
 `;
 

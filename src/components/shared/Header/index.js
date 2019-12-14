@@ -38,7 +38,13 @@ function Header({ title, language, user, dash, ...rest }) {
     <HeaderContainer hasProjectInfo={!!title}>
       {title ? (
         <ProjectHeader>
-          <img src={dash ? avatar_url : images[language]} alt="profile icon" />
+          {language && (
+            <img
+              src={dash ? avatar_url : images[language]}
+              alt="profile icon"
+              className="profile-icon"
+            />
+          )}
           <p className="project-title"> {title} </p>
         </ProjectHeader>
       ) : (
