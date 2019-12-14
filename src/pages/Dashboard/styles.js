@@ -46,7 +46,7 @@ export const MoreButton = styled.button`
   border: none;
   font-weight: bold;
   font-size: 1.2rem;
-  color: #df5a46;
+  color: #252429;
 
   svg {
     margin-left: 0.2rem;

@@ -106,7 +106,7 @@ class Dashboard extends Component {
             </p>
           )}
 
-          <MoreButton onClick={ev => this.handlePageChange(9)}>
+          <MoreButton onClick={() => this.handlePageChange(9)}>
             Load More
             <FaAngleDoubleRight />
           </MoreButton>

@@ -137,3 +137,31 @@ export const CodioHome = styled(ProjectList)`
 `;
 
 export const AuthItems = styled(CodioHome)``;
+
+export const MenuMobile = styled.header`
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+
+  background: #252429;
+  width: 100%;
+  padding: 0.5rem;
+
+  a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    img#logo-mobile {
+      height: 2rem;
+    }
+
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+`;

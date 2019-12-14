@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { slide as Menu } from 'react-burger-menu';
 
 import {
   FaCode,
@@ -17,8 +18,9 @@ import {
   LogoContainer,
   ProjectList,
   Item,
-  CodioHome,
   AuthItems,
+  CodioHome,
+  MenuMobile,
 } from './styles';
 import Logo from '../../../assets/transparent-logo.png';
 
@@ -63,13 +65,36 @@ export default function Layout({ children, items, actualPage }) {
 
   return (
     <GridContainer>
+      <MenuMobile className="mobile-header">
+        <Link
+          to="/dashboard/repositories"
+          title={!atHome ? 'Back to dashboard' : 'Codio'}
+        >
+          <img id="logo-mobile" src={Logo} alt="Codio Git" />
+          <p> Codio </p>
+        </Link>
+        <Menu right>
+          <a id="home" className="menu-item" href="/">
+            Home
+          </a>
+          <a id="about" className="menu-item" href="/about">
+            About
+          </a>
+          <a id="contact" className="menu-item" href="/contact">
+            Contact
+          </a>
+        </Menu>
+        {/* <MobileNav>
+          <li />
+        </MobileNav> */}
+      </MenuMobile>
       <Aside>
         <LogoContainer>
           <Link
             to="/dashboard/repositories"
             title={!atHome ? 'Back to dashboard' : 'Codio'}
           >
-            <img src={Logo} alt="Codio Git" />
+            <img id="logo-desktop" src={Logo} alt="Codio Git" />
             <p> Codio </p>
           </Link>
         </LogoContainer>
