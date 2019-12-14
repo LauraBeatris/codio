@@ -13,5 +13,6 @@ export const repositoryItems = (path, issues, pullRequests) => {
     },
     { name: 'Wiki', active: false },
     { name: 'Insights', active: false },
+    { name: 'Commits', active: `${path}/commits` },
   ];
 };

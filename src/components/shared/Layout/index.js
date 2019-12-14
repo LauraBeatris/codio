@@ -10,6 +10,7 @@ import {
   FaFolder,
   FaBookOpen,
   FaSignal,
+  FaShareSquare,
 } from 'react-icons/fa';
 
 import {
@@ -48,18 +49,21 @@ export default function Layout({ children, items, actualPage }) {
       <FaFolder size="24" />,
       <FaBookOpen size="24" />,
       <FaSignal size="24" />,
+      <FaShareSquare size="24" />,
     ];
 
     return items.map((i, key) => {
+      let path = null;
+      if (i.name === 'Dashboard') {
+        path = '/dashboard/repositories';
+      } else if (i.name === 'Back to Repository') {
+        path = `/dashboard/repositories/${i.repository}`;
+      } else {
+        path = `${actualPage}/${i.name.toLowerCase().replace(/\s/g, '')}`;
+      }
+
       return (
-        <Link
-          to={
-            !(i.name === 'Dashboard')
-              ? `${actualPage}/${i.name.toLowerCase().replace(/\s/g, '')}`
-              : '/dashboard/repositories'
-          }
-          className="name"
-        >
+        <Link to={path} className="name">
           <Item key={String(key)} active={i.active === actualPage}>
             {icons[key]}
 

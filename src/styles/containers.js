@@ -39,3 +39,5 @@ export const GridContainer = styled.div`
       grid-template-columns: repeat(${props.colsNumber}, ${props.colLength});
     `}
 `;
+
+export const InfoContainer = styled.div``;
