@@ -5,6 +5,7 @@ import Login from './pages/Auth';
 
 import Repositories from './pages/Dashboard';
 import RepositoryCode from './pages/RepositoryCode';
+import NotFound from './pages/NotFound';
 
 import InitProvider from './context';
 
@@ -18,6 +19,7 @@ export default () => (
           path="/dashboard/repositories/:repo"
           component={RepositoryCode}
         />
+        <Route component={NotFound} />
       </InitProvider>
     </Switch>
   </BrowserRouter>

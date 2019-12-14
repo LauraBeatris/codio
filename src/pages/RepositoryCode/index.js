@@ -10,6 +10,7 @@ import LastCommit from '../../components/LastCommit';
 import Files from '../../components/Files';
 
 import Loading from '../../components/Loading';
+import NotFound from "../NotFound";
 
 import GithubApi from '../../services/api';
 
@@ -40,19 +41,20 @@ function Repository({ session, match, location }) {
   useEffect(() => {
     // Getting the data related to the repository
     const getRepo = async () => {
-      session.updateValues({ loading: true });
+      session.updateValues({ loading: true, error: false });
 
-      await GithubApi.getRepository(title).then(res => {
-        setRepository(res[0].data);
-        setBranches(res[1].data);
-        setCommits(res[2].data);
-        setReleases(res[3].data);
-        setContributors(res[4].data);
-        setPullRequests(res[5].data);
-        setIssues(res[6].data);
-
-        session.updateValues({ loading: false });
-      });
+      await GithubApi.getRepository(title)
+        .then(res => {
+          setRepository(res[0].data);
+          setBranches(res[1].data);
+          setCommits(res[2].data);
+          setReleases(res[3].data);
+          setContributors(res[4].data);
+          setPullRequests(res[5].data);
+          setIssues(res[6].data);
+        })
+        .catch(() => session.updateValues({ error: true }))
+        .then(() => session.updateValues({ loading: false }));
     };
 
     // Getting the files of the repository
@@ -75,6 +77,7 @@ function Repository({ session, match, location }) {
   ];
 
   if (session.loading) return <Loading text="Loading Repository..." />;
+  if (session.error) return <NotFound text="Repository Not Found" />;
 
   return (
     <Layout items={items} atHome actualPage={location.pathname}>
