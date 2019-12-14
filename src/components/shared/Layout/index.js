@@ -52,11 +52,21 @@ export default function Layout({ children, items, actualPage }) {
 
     return items.map((i, key) => {
       return (
-        <Item key={String(key)} active={i.active === actualPage}>
-          {icons[key]}
-          <p className="name">{i.name}</p>
-          {i.number !== undefined && <p className="number">{i.number}</p>}
-        </Item>
+        <Link
+          to={
+            !(i.name === 'Dashboard')
+              ? `${actualPage}/${i.name.toLowerCase().replace(/\s/g, '')}`
+              : '/dashboard/repositories'
+          }
+          className="name"
+        >
+          <Item key={String(key)} active={i.active === actualPage}>
+            {icons[key]}
+
+            {i.name}
+            {i.number !== undefined && <p className="number">{i.number}</p>}
+          </Item>
+        </Link>
       );
     });
   };

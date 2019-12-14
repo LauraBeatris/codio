@@ -79,6 +79,10 @@ export const ProjectList = styled.ul`
   list-style: none;
   color: #fff;
 
+  a {
+    text-decoration: none;
+  }
+
   .title {
     color: #747475;
     font-size: 0.85rem;
@@ -90,6 +94,11 @@ export const ProjectList = styled.ul`
 `;
 
 export const Item = styled.li`
+  a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
   background: ${props => (props.active ? '#302F32' : 'inherit')};
   display: flex;
   justify-content: flex-start;
@@ -125,6 +134,9 @@ export const Item = styled.li`
     color: #747475;
     font-weight: bold;
   }
+
+  text-decoration: none;
+  color: #fff;
 `;
 
 export const CodioHome = styled(ProjectList)`

@@ -6,6 +6,8 @@ import Login from './pages/Auth';
 import Repositories from './pages/Dashboard';
 import RepositoryCode from './pages/RepositoryCode';
 import RepositoryPullRequests from './pages/PullRequests';
+import RepositoryCommits from './pages/Commits';
+import RepositoryIssues from './pages/Issues';
 
 import NotFound from './pages/NotFound';
 
@@ -15,17 +17,28 @@ export default () => (
   <BrowserRouter>
     <Switch>
       <InitProvider>
-        <Route path="/" exact component={Login} />
-        <Route path="/dashboard/repositories" exact component={Repositories} />
         <Route
           exact
           path="/dashboard/repositories/:repo"
           component={RepositoryCode}
         />
         <Route
+          exact
           path="/dashboard/repositories/:repo/pullrequests"
           component={RepositoryPullRequests}
         />
+        <Route
+          exact
+          path="/dashboard/repositories/:repo/commits"
+          component={RepositoryCommits}
+        />
+        <Route
+          exact
+          path="/dashboard/repositories/:repo/issues"
+          component={RepositoryIssues}
+        />
+        <Route path="/dashboard/repositories" exact component={Repositories} />
+        <Route path="/" exact component={Login} />
         <Route component={NotFound} />
       </InitProvider>
     </Switch>

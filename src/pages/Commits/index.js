@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
 import queryString from 'query-string';
+import Helmet from 'react-helmet';
 
 import { InitConsumer } from '../../context';
 import { mainItems as items } from '../../fixtures/navItems';
 // import { Container } from './styles';
 import Layout from '../../components/shared/Layout';
 
-class PullRequests extends Component {
+class Commits extends Component {
   state = { repository: null };
 
   // Getting the repo name from route param and finding in the context
@@ -27,7 +27,7 @@ class PullRequests extends Component {
     return (
       <Layout items={items}>
         <Helmet>
-          <title> Codio | Pull Requests </title>
+          <title> Codio | Commits </title>
         </Helmet>
         <p> Pull Requests </p>
       </Layout>
@@ -35,10 +35,10 @@ class PullRequests extends Component {
   }
 }
 
-const ContextPullRequests = props => (
+const ContextCommits = props => (
   <InitConsumer>
-    {session => <PullRequests {...props} session={session} />}
+    {session => <Commits {...props} session={session} />}
   </InitConsumer>
 );
 
-export { ContextPullRequests as default, PullRequests };
+export { ContextCommits as default, Commits };
