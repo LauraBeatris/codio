@@ -10,11 +10,12 @@ import LastCommit from '../../components/LastCommit';
 import Files from '../../components/Files';
 
 import Loading from '../../components/Loading';
-import NotFound from "../NotFound";
+import NotFound from '../NotFound';
 
 import GithubApi from '../../services/api';
 
 import { sortFiles } from '../../helpers/sort';
+import { repositoryItems } from '../../fixtures/navItems';
 
 import {
   HeaderInfo,
@@ -68,13 +69,11 @@ function Repository({ session, match, location }) {
     getFiles();
   }, [title]);
 
-  const items = [
-    { name: 'Code', active: location.pathname },
-    { name: 'Issues', number: issues.length, active: false },
-    { name: 'Pull Requests', number: pullRequests.length, active: false },
-    { name: 'Wiki', active: false },
-    { name: 'Insights', active: false },
-  ];
+  const items = repositoryItems(
+    location.pathname,
+    issues.length,
+    pullRequests.length
+  );
 
   if (session.loading) return <Loading text="Loading Repository..." />;
   if (session.error) return <NotFound text="Repository Not Found" />;

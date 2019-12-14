@@ -2,13 +2,15 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { FaFrown } from 'react-icons/fa';
-import Layout from '../../components/shared/Layout';
+
+import { mainItems as items } from '../../fixtures/navItems';
 import { FlexContainer } from '../../styles/containers';
 import { Message } from './styles';
+import Layout from '../../components/shared/Layout';
 
 export default function NotFound({ text }) {
   return (
-    <Layout items={[{ name: 'Dashboard', active: '/dashboard/repositories' }]}>
+    <Layout items={items}>
       <Helmet>
         <title> Codio | Not Found </title>
       </Helmet>
