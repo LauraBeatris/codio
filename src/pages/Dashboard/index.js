@@ -34,6 +34,10 @@ class Dashboard extends Component {
     };
   }
 
+  async componentDidMount() {
+    const { session } = this.props;
+  }
+
   // Responsible for the pagination
   handlePageChange = count => {
     const { currentPage, currentLimit } = this.state;

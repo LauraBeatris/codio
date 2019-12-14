@@ -33,10 +33,11 @@ class GithubApi {
   }
 
   // Getting the repositories of the user
-  getRepositories() {
+  getRepositories(login) {
+    this.login = login;
     return new Promise((resolve, reject) => {
       this.api
-        .get(`/users/${this.login}/repos`)
+        .get(`/users/${login.login.trim()}/repos`)
         .then(async res => resolve(res.data))
         .catch(err => reject(err));
     });

@@ -10,35 +10,41 @@ class InitProvider extends Component {
     super(props);
     this.state = {
       choosedRepository: null,
-      repositories:
-        JSON.parse(localStorage.getItem('codio_repositories')) || null,
+      repositories: null,
       user: JSON.parse(localStorage.getItem('codio_user')) || null,
       loading: false,
       error: null,
       updateValues: data => this.updateValues(data),
+      loadRepositories: login => this.loadRepositories(login),
     };
   }
 
   async componentDidMount() {
     // Verifing if the session has the user data, if not, it will redirect to the login page
     // Blocking problems with requests that doesn't have the user data
-    await this.withoutUserRedirect();
+    await this.withoutDataRedirect();
 
-    // Loading repositories
-    await this.loadRepositories();
+    // Loading repositories in the first mount
+    await this.loadRepositories(
+      this.state.user || JSON.parse(localStorage.getItem('codio_user'))
+    );
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // Updating the user and repositories data on the localStorage
     const { user, repositories } = this.state;
-    if (user !== prevState.user) {
+
+    // Updating the user and repositories data on the localStorage
+    if (JSON.stringify(user) !== JSON.stringify(prevState.user)) {
       localStorage.setItem('codio_user', JSON.stringify(user));
+      this.updateValues({ user });
+      this.loadRepositories(this.state.user);
     }
 
+    // Loading the repositories on user change
     if (
       JSON.stringify(repositories) !== JSON.stringify(prevState.repositories)
     ) {
-      localStorage.setItem('codio_repositories', JSON.stringify(repositories));
+      this.updateValues({ repositories });
     }
   }
 
@@ -48,14 +54,16 @@ class InitProvider extends Component {
   };
 
   // Bootstrap function to load the repositories
-  loadRepositories = async () => {
-    return GithubApi.getRepositories()
+  loadRepositories = async login => {
+    this.setState({ loading: true });
+    await GithubApi.getRepositories(login)
       .then(repositories => this.setState({ repositories }))
-      .catch(error => this.setState({ error }));
+      .catch(error => this.setState({ error }))
+      .then(() => this.setState({ loading: false }));
   };
 
   // Redirecting the user to the auth page if there's no data related to him storage
-  withoutUserRedirect = () => {
+  withoutDataRedirect = () => {
     if (!JSON.parse(localStorage.getItem('codio_user'))) {
       const message = decodeURIComponent('Please, login to see the dashboard');
       this.props.history.push(`/?message=${message}`);
