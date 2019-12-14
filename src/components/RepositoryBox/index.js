@@ -9,6 +9,7 @@ import {
   FaCss3Alt,
   FaJava,
   FaPython,
+  FaPhp,
 } from 'react-icons/fa';
 import { MdCallSplit } from 'react-icons/md';
 import { RepositoryBox, RepositoryDetails } from './styles';
@@ -27,6 +28,7 @@ export default function Repository({
     CSS: <FaCss3Alt color="blue" />,
     Java: <FaJava />,
     Python: <FaPython color="#346B9C" />,
+    PHP: <FaPhp color="#000" />,
   };
   icon = languages[language];
 

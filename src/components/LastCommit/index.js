@@ -6,7 +6,12 @@ import { LastCommitContainer } from './styles';
 
 export default function Last({ commit }) {
   const { author, commit: nestedInfo, sha } = commit;
-  const { login, avatar_url } = author;
+  let login, avatar_url = 'Not Found'
+  if (author) {
+    login = author.login
+    avatar_url = author.avatar_url
+  }
+
   const { committer, message } = nestedInfo;
   const { date } = committer;
 

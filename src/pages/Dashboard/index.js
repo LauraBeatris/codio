@@ -72,7 +72,7 @@ class Dashboard extends Component {
           <title> Codio | Repositories </title>
         </Helmet>
         <ProjectsContainer>
-          {user && <Header title="Select a Repository" user={user} />}
+          {user && <Header title="Select a Repository" dash user={user} />}
           {!!repositories && repositories.length > 0 ? (
             <Repositories>
               {!pagedRepositories

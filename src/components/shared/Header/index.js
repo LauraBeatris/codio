@@ -9,14 +9,37 @@ import {
   Notification,
 } from './styles';
 
-function Header({ projectTitle, user }) {
+import Php from '../../../assets/php.svg';
+import Java from '../../../assets/java.svg';
+import JavaScript from '../../../assets/javascript.svg';
+import CSharp from '../../../assets/hashtag.svg';
+import TypeScript from '../../../assets/typescript.svg';
+import Python from '../../../assets/python.svg';
+import Html from '../../../assets/html-5.svg';
+import CSS from '../../../assets/css-3.svg';
+
+function Header({ title, language, user, dash, ...rest }) {
+  console.log(rest);
   const { avatar_url } = user;
+  const projectIcon = null;
+
+  const images = {
+    HTML: Html,
+    JavaScript,
+    Java,
+    Python,
+    PHP: Php,
+    'C#': CSharp,
+    TypeScript,
+    CSS,
+  };
+
   return (
-    <HeaderContainer hasProjectInfo={!!projectTitle}>
-      {projectTitle ? (
+    <HeaderContainer hasProjectInfo={!!title}>
+      {title ? (
         <ProjectHeader>
-          <img src={avatar_url} alt="profile user" />
-          <p className="project-title"> {projectTitle} </p>
+          <img src={dash ? avatar_url : images[language]} alt="profile icon" />
+          <p className="project-title"> {title} </p>
         </ProjectHeader>
       ) : (
         'Repositories'

@@ -84,6 +84,7 @@ function Repository({ session, match, location }) {
   if (session.loading) return <Loading text="Loading Repository..." />;
   if (session.error) return <NotFound text="Repository Not Found" />;
 
+  const { language } = repository;
   return (
     <Layout items={items} atHome actualPage={location.pathname}>
       <Helmet>
@@ -91,7 +92,7 @@ function Repository({ session, match, location }) {
       </Helmet>
       <RepoContainer>
         <HeaderContainer>
-          <MainHeader projectTitle={title} user={user} />
+          <MainHeader title={title} language={language} user={user} />
 
           <HeaderInfo>
             <p> {repository.description} </p>
