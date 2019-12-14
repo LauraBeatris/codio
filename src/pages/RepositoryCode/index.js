@@ -40,6 +40,10 @@ function Repository({ session, match, location }) {
   const orderedFiles = sortFiles(files);
 
   useEffect(() => {
+    const saveRepoInfo = (commits, pullRequests, issues) => {
+      return session.updateValues({ commits, pullRequests, issues });
+    };
+
     // Getting the data related to the repository
     const getRepo = async () => {
       session.updateValues({ loading: true, error: false });
@@ -53,6 +57,8 @@ function Repository({ session, match, location }) {
           setContributors(res[4].data);
           setPullRequests(res[5].data);
           setIssues(res[6].data);
+
+          saveRepoInfo(res[0].data, res[5].data, res[6].data);
         })
         .catch(() => session.updateValues({ error: true }))
         .then(() => session.updateValues({ loading: false }));
