@@ -73,20 +73,55 @@ export default function Layout({ children, items, actualPage }) {
           <img id="logo-mobile" src={Logo} alt="Codio Git" />
           <p> Codio </p>
         </Link>
-        <Menu right>
-          <a id="home" className="menu-item" href="/">
-            Home
-          </a>
-          <a id="about" className="menu-item" href="/about">
-            About
-          </a>
-          <a id="contact" className="menu-item" href="/contact">
-            Contact
-          </a>
-        </Menu>
-        {/* <MobileNav>
-          <li />
-        </MobileNav> */}
+        <div className="menu-wrapper">
+          <Menu right>
+            <LogoContainer>
+              <Link
+                to="/dashboard/repositories"
+                title={!atHome ? 'Back to dashboard' : 'Codio'}
+              >
+                <img id="logo-desktop" src={Logo} alt="Codio Git" />
+                <p> Codio </p>
+              </Link>
+            </LogoContainer>
+
+            <ProjectList>
+              <li className="title">
+                {' '}
+                {!atHome ? 'Project' : 'Select a repository'}{' '}
+              </li>
+              {renderItems()}
+            </ProjectList>
+
+            <CodioHome>
+              <li className="title"> Codio Home </li>
+              {codioHomeItems.map((i, key) => (
+                <Item key={String(key)}>
+                  <p id="name">{i}</p>
+                </Item>
+              ))}
+              <div className="last" />
+            </CodioHome>
+
+            <AuthItems>
+              {authItems.map((i, key) =>
+                i.name === 'Sign In' ? (
+                  <Item
+                    key={String(key)}
+                    onClick={() => window.location.replace('/')}
+                    active={i.active === actualPage}
+                  >
+                    <p id="name">{i.name}</p>
+                  </Item>
+                ) : (
+                  <Item key={String(key)} active={i.active === actualPage}>
+                    <p id="name">{i.name}</p>
+                  </Item>
+                )
+              )}
+            </AuthItems>
+          </Menu>
+        </div>
       </MenuMobile>
       <Aside>
         <LogoContainer>

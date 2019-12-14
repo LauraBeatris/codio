@@ -139,7 +139,7 @@ export const CodioHome = styled(ProjectList)`
 export const AuthItems = styled(CodioHome)``;
 
 export const MenuMobile = styled.header`
-  @media (min-width: 768px) {
+  @media (min-width: 1025px) {
     display: none;
   }
 
@@ -163,5 +163,9 @@ export const MenuMobile = styled.header`
     text-decoration: none;
     color: #fff;
     font-weight: bold;
+  }
+
+  div.menu-wrapper {
+    position: relative;
   }
 `;

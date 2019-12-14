@@ -27,12 +27,22 @@ export default createGlobalStyle`
 
   /* Mobile Menu */
   /* Position and sizing of burger button */
-.bm-burger-button {
-  position: fixed;
-  width: 24px;
+  .bm-burger-button {
+    position: fixed;
+    width: 24px;
     height: 20px;
     left: 85%;
     bottom: 2.1%;
+
+  @media (min-width: 768px) {
+    bottom: 1.4%;
+    left: 95%;
+  }
+
+  @media (min-width: 1024px){
+    bottom: 0.95%;
+    left: 96%;
+  }
 }
 
 /* Color/shape of burger icon bars */
