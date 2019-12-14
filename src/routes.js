@@ -15,8 +15,16 @@ import InitProvider from './context';
 
 export default () => (
   <BrowserRouter>
-    <Switch>
-      <InitProvider>
+    <InitProvider>
+      <Switch>
+        <Route path="/" exact component={Login} />
+
+        <Route path="/dashboard/repositories" exact component={Repositories} />
+        <Route
+          path="/dashboard/repositories/:repo"
+          exact
+          component={RepositoryCode}
+        />
         <Route
           path="/dashboard/repositories/:repo/pullrequests"
           component={RepositoryPullRequests}
@@ -29,15 +37,8 @@ export default () => (
           path="/dashboard/repositories/:repo/issues"
           component={RepositoryIssues}
         />
-        <Route
-          path="/dashboard/repositories/:repo"
-          exact
-          component={RepositoryCode}
-        />
-        <Route path="/dashboard/repositories" exact component={Repositories} />
-        <Route path="/" exact component={Login} />
-        <Route component={NotFound} />
-      </InitProvider>
-    </Switch>
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </InitProvider>
   </BrowserRouter>
 );
