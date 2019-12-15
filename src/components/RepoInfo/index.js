@@ -20,10 +20,10 @@ export default function RepoInfo({ info }) {
 }
 
 RepoInfo.propTypes = {
-  info: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      number: PropTypes.number.isRequired,
-    }).isRequired
-  ).isRequired,
+  info: PropTypes.shape({
+    branches: PropTypes.number.isRequired,
+    commits: PropTypes.number.isRequired,
+    releases: PropTypes.number.isRequired,
+    contributors: PropTypes.number.isRequired,
+  }).isRequired,
 };

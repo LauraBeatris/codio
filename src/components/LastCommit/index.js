@@ -44,11 +44,5 @@ export default function Last({ commit }) {
 }
 
 Last.propTypes = {
-  data: PropTypes.shape({
-    avatar: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
-    version: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+  commit: PropTypes.shape().isRequired,
 };

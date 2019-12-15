@@ -21,21 +21,31 @@ export default function RepoSelect({
   onChange,
   currentBranch,
 }) {
+  const [value, setValue] = useState(options && options[0] && options[0]);
+
   return (
     <SelectContainer
-      class="select-wrapper"
+      className="select-wrapper"
       backgroundColor={backgroundColor}
       textColor={textColor}
       borderColor={borderColor}
     >
-      <FaCodeBranch color={textColor} class="download-icon" size="20" />
+      <FaCodeBranch color={textColor} className="download-icon" size="20" />
       <p className="branch-name">Branch: {currentBranch}</p>
-      <FaSort color={textColor} class="select-icon" size="20" />
-      <select onChange={ev => onChange(ev.target.value)}>
-        {(options &&
-          options.map(o => <option value={o.name}>{o.name}</option>)) || (
-          <option value="teste">test</option>
-        )}
+      <FaSort color={textColor} className="select-icon" size="20" />
+      <select
+        value={value}
+        onChange={ev => {
+          onChange(ev.target.value);
+          setValue(ev.target.value);
+        }}
+      >
+        {options &&
+          options.map((o, key) => (
+            <option key={String(key)} value={o.name}>
+              {o.name}
+            </option>
+          ))}
       </select>
     </SelectContainer>
   );
@@ -65,15 +75,19 @@ export function DownloadOrClone({
   return (
     <DownloadOrCloneContainer>
       <SelectContainer
-        class="select-wrapper"
+        className="select-wrapper"
         backgroundColor={backgroundColor}
         onClick={() => setActive(!active)}
         textColor={textColor}
         borderColor={borderColor}
       >
-        <FaCloudDownloadAlt color={textColor} class="download-icon" size="20" />
+        <FaCloudDownloadAlt
+          color={textColor}
+          className="download-icon"
+          size="20"
+        />
         <p>{text}</p>
-        <FaSort color={textColor} class="select-icon" size="20" />
+        <FaSort color={textColor} className="select-icon" size="20" />
       </SelectContainer>
       <CloneOrDownload className="clone-or-download" active={active}>
         <div>
@@ -123,6 +137,5 @@ RepoSelect.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
   borderColor: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };

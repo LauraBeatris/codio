@@ -33,8 +33,8 @@ export function FileItem({ data }) {
 export default function Files({ files }) {
   return (
     <GridContainer hasRows rowsNumber={files.length} rowLength="3rem">
-      {files.map(file => (
-        <FileItem data={file} />
+      {files.map((file, key) => (
+        <FileItem key={String(key)} data={file} />
       ))}
     </GridContainer>
   );

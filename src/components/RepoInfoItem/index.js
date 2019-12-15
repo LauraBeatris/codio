@@ -34,8 +34,6 @@ export default function FileItem({ title, value }) {
 }
 
 FileItem.propTypes = {
-  item: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
-  }).isRequired,
+  title: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
 };

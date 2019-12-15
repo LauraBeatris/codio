@@ -47,5 +47,9 @@ export default function InteractiveHeader({
 }
 
 InteractiveHeader.propTypes = {
-  branches: PropTypes.shape.isRequired,
+  options: PropTypes.shape({
+    branches: PropTypes.array.isRequired,
+    keys: PropTypes.shape({}).isRequired,
+    watchers: PropTypes.number,
+  }).isRequired,
 };
