@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-  Git UI Application using the [GitHub API](https://developer.github.com/v3/)
+  Git UI Application using the <a href="https://developer.github.com/v3/">GitHub API</a>
 </h3>
 
 <p align="center">
