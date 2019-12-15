@@ -31,6 +31,11 @@ export const Commit = styled.div`
 
   p {
     font-size: 0.9rem;
+    text-align: left;
+  }
+
+  p.date,
+  p.sha {
     text-align: center;
   }
 `;

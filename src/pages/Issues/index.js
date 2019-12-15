@@ -103,7 +103,7 @@ class Issues extends Component {
 
           {issues && issues.length > 0 ? (
             issues.map(p => (
-              <Issue>
+              <Issue isClosed={p.state === 'closed'}>
                 <p>
                   <strong> {p.title} </strong>
                 </p>

@@ -103,12 +103,12 @@ class Commits extends Component {
                   {' '}
                   <strong>Message:</strong> {p.commit.message}{' '}
                 </p>
-                <p>
+                <p className="date">
                   {' '}
                   <strong>{moment(p.commit.committer.date).fromNow()}</strong>
                 </p>
 
-                <p>
+                <p className="sha">
                   {' '}
                   <strong>Sha:</strong> {p.sha.slice(0, 9)}
                 </p>

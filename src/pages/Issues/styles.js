@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -22,7 +22,14 @@ export const Container = styled.div`
 
 export const Issue = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  ${props =>
+    props.isClosed
+      ? css`
+          grid-template-columns: repeat(5, 1fr);
+        `
+      : css`
+          grid-template-columns: repeat(4, 1fr);
+        `}
   padding: 0.8rem;
   border: 1px solid #bebebe;
   border-radius: 0.3rem;
