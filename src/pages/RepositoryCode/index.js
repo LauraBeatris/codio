@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Helmet from 'react-helmet';
+import { Beforeunload } from 'react-beforeunload';
 
 import { InitConsumer } from '../../context';
 import Layout from '../../components/shared/Layout';
@@ -88,6 +89,10 @@ function Repository({ session, match, location }) {
     getFiles(currentBranch);
   }, [currentBranch]);
 
+  // useEffect(() => {
+  //   useBeforeunload(() => "You'll lose your data!");
+  // }, []);
+
   const items = repositoryItems(
     location.pathname,
     issues.length,
@@ -103,6 +108,7 @@ function Repository({ session, match, location }) {
   const { language } = repository;
   return (
     <Layout items={items} atHome actualPage={location.pathname}>
+      <Beforeunload onBeforeunload={() => "You'll lose your data!"} />
       <Helmet>
         <title> Codio | {title} </title>
       </Helmet>

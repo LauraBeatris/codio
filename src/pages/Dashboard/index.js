@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import Helmet from 'react-helmet';
+import { Beforeunload } from 'react-beforeunload';
 
 import Header from '../../components/shared/Header';
 import Repository from '../../components/RepositoryBox';
@@ -68,6 +69,7 @@ class Dashboard extends Component {
         actualPage={this.props.location.pathname}
         items={[{ name: 'Dashboard', active: '/dashboard/repositories' }]}
       >
+        <Beforeunload onBeforeunload={() => "You'll lose your data!"} />
         <Helmet>
           <title> Codio | Repositories </title>
         </Helmet>
