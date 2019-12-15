@@ -50,10 +50,6 @@ function Header({ title, language, user, dash, ...rest }) {
         'Repositories'
       )}
       <Profile>
-        <Notification>
-          <FaBell size="30" color="#333238" />
-          <div className="count">5</div>
-        </Notification>
         <Link to="/profile">
           <img src={avatar_url} alt="profile" />
         </Link>
