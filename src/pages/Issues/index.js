@@ -65,7 +65,7 @@ class Issues extends Component {
 
   render() {
     const { session, match } = this.props;
-    const { repository, issues, page } = this.state;
+    const { repository, issues, page, state } = this.state;
     const { loading } = session;
 
     let language = null;
@@ -93,8 +93,8 @@ class Issues extends Component {
             />
             <IssuesState
               onChange={ev => this.setState({ state: ev.target.value })}
+              value={state}
             >
-              <option> Select a State </option>
               <option value="all">All</option>
               <option value="closed">Closed</option>
               <option value="open">Open</option>

@@ -27,7 +27,7 @@ class PullRequests extends Component {
       repository: props.match.params.repo,
       language: null,
       page: 1,
-      state: 'all',
+      state: '',
     };
   }
 
@@ -70,7 +70,7 @@ class PullRequests extends Component {
 
   render() {
     const { session, match } = this.props;
-    const { repository, pullRequests, page } = this.state;
+    const { repository, pullRequests, page, state } = this.state;
     const { loading } = session;
 
     let language = null;
@@ -101,9 +101,13 @@ class PullRequests extends Component {
               handlePageChange={this.handlePageChange}
             />
             <PullRequestState
-              onChange={ev => this.setState({ state: ev.target.value })}
+              value={state}
+              onChange={ev =>
+                this.setState({
+                  state: ev.target.value,
+                })
+              }
             >
-              <option> Select a State </option>
               <option value="all">All</option>
               <option value="closed">Closed</option>
               <option value="open">Open</option>
