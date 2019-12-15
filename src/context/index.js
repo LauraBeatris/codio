@@ -27,13 +27,14 @@ class InitProvider extends Component {
     // Blocking problems with requests that doesn't have the user data
     await this.withoutDataRedirect();
 
+    const { user } = this.state;
+
     // Loading repositories in the first mount
-    if (this.state.user){
+    if (user) {
       await this.loadRepositories(
-        this.state.user || JSON.parse(localStorage.getItem('codio_user'))
+        user || JSON.parse(localStorage.getItem('codio_user'))
       );
     }
-
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -43,7 +44,7 @@ class InitProvider extends Component {
     if (JSON.stringify(user) !== JSON.stringify(prevState.user)) {
       localStorage.setItem('codio_user', JSON.stringify(user));
       this.updateValues({ user });
-      this.loadRepositories(this.state.user);
+      this.loadRepositories(user);
     }
 
     // Loading the repositories on user change
@@ -70,12 +71,11 @@ class InitProvider extends Component {
 
   // Redirecting the user to the auth page if there's no data related to him storage
   withoutDataRedirect = () => {
-    if (
-      !JSON.parse(localStorage.getItem('codio_user')) ||
-      !this.state.user.login
-    ) {
+    const { history } = this.props;
+    const { user } = this.state;
+    if (!JSON.parse(localStorage.getItem('codio_user')) || !user.login) {
       const message = decodeURIComponent('Please, login to see the dashboard');
-      this.props.history.push(`/?message=${message}`);
+      history.push(`/?message=${message}`);
     }
   };
 
@@ -90,7 +90,8 @@ class InitProvider extends Component {
 export const InitConsumer = InitContext.Consumer;
 
 InitProvider.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({}).isRequired,
 };
 
 export default withRouter(InitProvider);

@@ -37,10 +37,6 @@ class Dashboard extends Component {
     };
   }
 
-  async componentDidMount() {
-    await GithubApi.postAuthentication();
-  }
-
   // Responsible for the pagination
   handlePageChange = count => {
     const { currentPage, currentLimit } = this.state;
@@ -65,14 +61,14 @@ class Dashboard extends Component {
 
   render() {
     const { pagedRepositories } = this.state;
-    const { session } = this.props;
+    const { session, location } = this.props;
     const { user, repositories, loading } = session;
 
     if (loading) return <Loading text="Loading Repositories" />;
 
     return (
       <Layout
-        actualPage={this.props.location.pathname}
+        actualPage={location.pathname}
         items={[{ name: 'Dashboard', active: '/dashboard/repositories' }]}
       >
         <Beforeunload onBeforeunload={() => "You'll lose your data!"} />

@@ -63,8 +63,8 @@ export default function Layout({ children, items, actualPage, atProfile }) {
       }
 
       return (
-        <Link to={path} className="name">
-          <Item key={String(key)} active={i.active === actualPage}>
+        <Link key={String(key)} to={path} className="name">
+          <Item active={i.active === actualPage}>
             {icons[key]}
 
             {i.name}
@@ -204,7 +204,7 @@ Layout.defaultProps = {
 };
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.array.isRequired,
   issues: PropTypes.number,
   pullRequests: PropTypes.number,
   projects: PropTypes.number,

@@ -20,7 +20,6 @@ import Html from '../../../assets/html-5.svg';
 import CSS from '../../../assets/css-3.svg';
 
 function Header({ title, language, user, dash, ...rest }) {
-  console.log(rest);
   const { avatar_url } = user;
 
   const images = {
