@@ -99,6 +99,8 @@ export const Item = styled.li`
     justify-content: flex-start;
     align-items: center;
   }
+
+  width: 100%;
   background: ${props => (props.active ? '#302F32' : 'inherit')};
   display: flex;
   justify-content: flex-start;

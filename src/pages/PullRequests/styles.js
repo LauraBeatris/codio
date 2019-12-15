@@ -7,6 +7,17 @@ export const Container = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   padding: 0.8rem;
+
+  p.no-pulls {
+    font-size: 1rem;
+    padding: 0.8rem;
+    width: 100%;
+    text-align: center;
+    color: #d95844;
+    font-weight: bold;
+
+    margin-top: 8rem;
+  }
 `;
 
 export const PullRequest = styled.div`

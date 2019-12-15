@@ -60,7 +60,7 @@ class PullRequests extends Component {
             user={session.user}
           />
 
-          {pullRequests &&
+          {pullRequests && pullRequests.length > 0 ? (
             pullRequests.map(p => (
               <PullRequest>
                 <p>
@@ -89,7 +89,10 @@ class PullRequests extends Component {
                   </p>
                 )}
               </PullRequest>
-            ))}
+            ))
+          ) : (
+            <p className="no-pulls"> There's no pull request </p>
+          )}
         </Container>
       </Layout>
     );
