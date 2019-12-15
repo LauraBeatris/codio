@@ -26,7 +26,12 @@ class GithubApi {
   postAuthentication(login, password) {
     return new Promise((resolve, reject) => {
       this.api
-        .post('/user', { username: 'LauraBeatris', password: 'Eamsc4544' })
+        .get('/user', {
+          headers: {
+            username: 'LauraBeatris',
+            password: 'eamsc4544',
+          },
+        })
         .then(res => resolve(console.log(res.data)))
         .catch(err => reject(console.log(err)));
     });

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import { FaArrowRight, FaExclamationTriangle } from 'react-icons/fa';
@@ -13,6 +14,8 @@ import {
   LogoContainer,
   Error,
 } from './styles';
+import Transition from '../../styles/transition';
+
 import Logo from '../../assets/transparent-logo.png';
 import { InitConsumer } from '../../context';
 import GithubApi from '../../services/api';
@@ -21,12 +24,18 @@ class Auth extends Component {
   state = {
     login: '',
     error: '',
+    appear: false,
   };
 
   componentDidMount() {
     const { location } = this.props;
     const params = queryString.parse(location.search);
     if (params && params.message) this.setState({ error: params.message });
+    this.setState({ appear: true });
+  }
+
+  componentWillUnmount() {
+    this.setState({ appear: false });
   }
 
   handleSubmit = async ev => {
@@ -62,54 +71,61 @@ class Auth extends Component {
   };
 
   render() {
-    const { error, login } = this.state;
+    const { error, login, appear } = this.state;
     return (
-      <AuthContainer>
-        <Helmet>
-          <title> Codio | Welcome </title>
-        </Helmet>
-        <LoginBox>
-          <LogoContainer>
-            <img src={Logo} alt="Codio Git" />
-          </LogoContainer>
+      <Transition pose={appear ? 'visible' : 'hidden'}>
+        <AuthContainer>
+          <Helmet>
+            <title> Codio | Welcome </title>
+          </Helmet>
 
-          <div className="message">
-            <h1> Welcome, </h1>
-            <h2>Sign in to continue</h2>
-          </div>
+          <LoginBox>
+            <LogoContainer>
+              <img src={Logo} alt="Codio Git" />
+            </LogoContainer>
 
-          <form onSubmit={ev => this.handleSubmit(ev)} autoComplete="false">
-            <div id="login-container">
-              <Label id="login-label" filled={Boolean(login)} htmlFor="login">
-                {' '}
-                Enter your git username
-              </Label>
-              <Input
-                id="login"
-                type="text"
-                onFocus={() => {
-                  const loginField = document.getElementById('login-container');
-                  loginField.classList.add('active');
-                }}
-                onBlur={() => {
-                  const loginField = document.getElementById('login-container');
-                  loginField.classList.remove('active');
-                }}
-                onChange={ev => this.setState({ login: ev.target.value })}
-              />
+            <div className="message">
+              <h1> Welcome, </h1>
+              <h2>Sign in to continue</h2>
             </div>
-            {error && (
-              <Error>
-                <FaExclamationTriangle color="#fff" /> {error}
-              </Error>
-            )}
-            <SubmitButton error={!!error}>
-              Sign in
-              <FaArrowRight />
-            </SubmitButton>
-          </form>
-        </LoginBox>
-      </AuthContainer>
+
+            <form onSubmit={ev => this.handleSubmit(ev)} autoComplete="false">
+              <div id="login-container">
+                <Label id="login-label" filled={Boolean(login)} htmlFor="login">
+                  {' '}
+                  Enter your git username
+                </Label>
+                <Input
+                  id="login"
+                  type="text"
+                  onFocus={() => {
+                    const loginField = document.getElementById(
+                      'login-container'
+                    );
+                    loginField.classList.add('active');
+                  }}
+                  onBlur={() => {
+                    const loginField = document.getElementById(
+                      'login-container'
+                    );
+                    loginField.classList.remove('active');
+                  }}
+                  onChange={ev => this.setState({ login: ev.target.value })}
+                />
+              </div>
+              {error && (
+                <Error>
+                  <FaExclamationTriangle color="#fff" /> {error}
+                </Error>
+              )}
+              <SubmitButton error={!!error}>
+                Sign in
+                <FaArrowRight />
+              </SubmitButton>
+            </form>
+          </LoginBox>
+        </AuthContainer>
+      </Transition>
     );
   }
 }

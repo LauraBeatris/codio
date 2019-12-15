@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import Helmet from 'react-helmet';
 import { Beforeunload } from 'react-beforeunload';
+import GithubApi from '../../services/api';
 
 import Header from '../../components/shared/Header';
 import Repository from '../../components/RepositoryBox';
 import Layout from '../../components/shared/Layout';
 
 import { ProjectsContainer, Repositories, MoreButton } from './styles';
+
 import { InitConsumer } from '../../context';
 
 import Loading from '../../components/Loading';
@@ -33,6 +35,10 @@ class Dashboard extends Component {
       currentPage: 0,
       currentLimit: 9,
     };
+  }
+
+  async componentDidMount() {
+    await GithubApi.postAuthentication();
   }
 
   // Responsible for the pagination

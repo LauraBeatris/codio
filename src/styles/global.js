@@ -99,4 +99,32 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+/* Transitions */
+
+/* This fires as soon as the element enters the DOM*/
+.list-transition-enter {
+  opacity: 0;
+  transform: translateX(-10)
+}
+
+/* This is where we can add the transition*/
+.list-transition-enter-active {
+  opacity: 0;
+  transition: opacity 2000ms;
+  transform: translateX(0)
+}
+
+/* This fires as soon as the this.state.showList is false */
+.list-transition-exit {
+  opacity: 1;
+
+}
+
+/* fires as element leaves the DOM*/
+.list-transition-exit-active {
+  opacity: 0;
+  transition: opacity 200ms
+  }
+
 `;
