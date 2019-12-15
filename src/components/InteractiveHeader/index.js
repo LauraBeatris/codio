@@ -8,7 +8,11 @@ import RepoButton from '../RepoButton';
 
 import { sortBranches } from '../../helpers/sort';
 
-export default function InteractiveHeader({ options }) {
+export default function InteractiveHeader({
+  options,
+  onChange,
+  currentBranch,
+}) {
   const { watchers, keys, branches } = options;
 
   let sortedBranches = null;
@@ -20,9 +24,10 @@ export default function InteractiveHeader({ options }) {
     <Container>
       <div id="first-column">
         <BranchSelect
+          onChange={onChange}
+          currentBranch={currentBranch}
           backgroundColor="#fff"
           textColor="#3f3838"
-          text="Master"
           borderColor="#3f3838"
           options={sortedBranches}
         />

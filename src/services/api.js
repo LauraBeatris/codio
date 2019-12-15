@@ -70,10 +70,10 @@ class GithubApi {
       .catch(err => err);
   }
 
-  getFiles(name) {
+  getFiles(name, ref = 'master') {
     return new Promise((resolve, reject) => {
       this.api
-        .get(`/repos/${this.login}/${name}/contents`)
+        .get(`/repos/${this.login}/${name}/contents?ref=${ref}`)
         .then(async res => resolve(res.data))
         .catch(err => reject(err));
     });

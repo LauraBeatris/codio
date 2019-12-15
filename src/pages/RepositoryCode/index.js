@@ -39,6 +39,8 @@ function Repository({ session, match, location }) {
   const [files, setFiles] = useState([]);
   const orderedFiles = sortFiles(files);
 
+  const [currentBranch, setCurrentBranch] = useState('master');
+
   useEffect(() => {
     const saveRepoInfo = (commits, pullRequests, issues) => {
       return session.updateValues({ commits, pullRequests, issues });
@@ -65,15 +67,26 @@ function Repository({ session, match, location }) {
     };
 
     // Getting the files of the repository
-    const getFiles = async () => {
-      await GithubApi.getFiles(title).then(res => {
+    const getFiles = async ref => {
+      await GithubApi.getFiles(title, ref).then(res => {
         setFiles(res);
       });
     };
 
     getRepo();
-    getFiles();
+    getFiles(currentBranch);
   }, [title]);
+
+  // On change change -> Get the files from that reference
+  useEffect(() => {
+    const getFiles = async ref => {
+      await GithubApi.getFiles(title, ref).then(res => {
+        setFiles(res);
+      });
+    };
+
+    getFiles(currentBranch);
+  }, [currentBranch]);
 
   const items = repositoryItems(
     location.pathname,
@@ -81,6 +94,8 @@ function Repository({ session, match, location }) {
     pullRequests.length,
     commits.length
   );
+
+  const handleBranchChange = ref => setCurrentBranch(ref);
 
   if (session.loading) return <Loading text="Loading Repository..." />;
   if (session.error) return <NotFound text="Repository Not Found" />;
@@ -106,6 +121,8 @@ function Repository({ session, match, location }) {
               }}
             />
             <InteractiveHeader
+              onChange={ref => handleBranchChange(ref)}
+              currentBranch={currentBranch}
               options={{
                 branches,
                 keys: {

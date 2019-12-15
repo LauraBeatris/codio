@@ -28,9 +28,12 @@ class InitProvider extends Component {
     await this.withoutDataRedirect();
 
     // Loading repositories in the first mount
-    await this.loadRepositories(
-      this.state.user || JSON.parse(localStorage.getItem('codio_user'))
-    );
+    if (this.state.user){
+      await this.loadRepositories(
+        this.state.user || JSON.parse(localStorage.getItem('codio_user'))
+      );
+    }
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -67,7 +70,10 @@ class InitProvider extends Component {
 
   // Redirecting the user to the auth page if there's no data related to him storage
   withoutDataRedirect = () => {
-    if (!JSON.parse(localStorage.getItem('codio_user'))) {
+    if (
+      !JSON.parse(localStorage.getItem('codio_user')) ||
+      !this.state.user.login
+    ) {
       const message = decodeURIComponent('Please, login to see the dashboard');
       this.props.history.push(`/?message=${message}`);
     }

@@ -16,8 +16,9 @@ export default function RepoSelect({
   backgroundColor,
   textColor,
   borderColor,
-  text,
   options,
+  onChange,
+  currentBranch,
 }) {
   return (
     <SelectContainer
@@ -27,9 +28,9 @@ export default function RepoSelect({
       borderColor={borderColor}
     >
       <FaCodeBranch color={textColor} class="download-icon" size="20" />
-      <p>{text}</p>
+      <p className="branch-name">Branch: {currentBranch}</p>
       <FaSort color={textColor} class="select-icon" size="20" />
-      <select>
+      <select onChange={ev => onChange(ev.target.value)}>
         {(options &&
           options.map(o => <option value={o.name}>{o.name}</option>)) || (
           <option value="teste">test</option>
