@@ -6,12 +6,19 @@ export const Container = styled.div`
   width: 100%;
   align-items: flex-start;
   justify-content: flex-start;
+  padding: 0.8rem;
 `;
 
-export const Title = styled.h1`
-  font-size: 2.1rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-`;
+export const PullRequest = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 0.8rem;
+  border: 1px solid #bebebe;
+  border-radius: 0.3rem;
+  width: 100%;
 
-export const PullRequest = styled.div``;
+  p {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+`;

@@ -5,6 +5,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem;
+  width: 100%;
 
   img:not(.profile-icon) {
     border-radius: 50%;
