@@ -14,7 +14,7 @@ export const LastCommitContainer = styled.div`
     align-items: center;
 
     p {
-      margin-left: 0.5rem;
+      margin-left: 0.3rem;
       font-weight: 400;
 
       &.author-name {

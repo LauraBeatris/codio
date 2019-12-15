@@ -28,6 +28,7 @@ export const FlexContainer = styled.div`
 
 export const GridContainer = styled.div`
   display: grid;
+  margin-top: 0.5rem;
   ${props =>
     props.hasRows &&
     css`

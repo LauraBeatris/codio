@@ -89,10 +89,6 @@ function Repository({ session, match, location }) {
     getFiles(currentBranch);
   }, [currentBranch]);
 
-  // useEffect(() => {
-  //   useBeforeunload(() => "You'll lose your data!");
-  // }, []);
-
   const items = repositoryItems(
     location.pathname,
     issues.length,
