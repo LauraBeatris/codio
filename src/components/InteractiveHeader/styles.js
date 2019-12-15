@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   @media (min-width: 320px) and (max-width: 767px) {
     grid-template-columns: auto;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     padding: 0;
   }
 
@@ -26,13 +26,19 @@ export const Container = styled.div`
     justify-content: flex-end;
     align-items: center;
 
-    div:not(:last-child) {
+    div {
       margin-right: 1rem;
     }
 
     @media (min-width: 320px) and (max-width: 767px) {
       margin-top: 0.3rem;
-      justify-content: center;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      div {
+        margin-right: 0rem;
+      }
     }
   }
 `;
