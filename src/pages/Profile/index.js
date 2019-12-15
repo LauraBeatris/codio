@@ -166,7 +166,7 @@ class Profile extends Component {
 
             <p className="location">
               {' '}
-              Location <span>{user.location}</span>
+              Location <span>{user.location ? user.location : 'Not found'}</span>
             </p>
 
             <p className="last-update">
