@@ -2,9 +2,15 @@ export const mainItems = [
   { name: 'Dashboard', active: '/dashboard/repositories' },
 ];
 
-export const repositoryItems = (path, issues, pullRequests, commits) => {
+export const repositoryItems = (
+  path,
+  issues,
+  pullRequests,
+  commits,
+  repository
+) => {
   return [
-    { name: 'Code', active: path },
+    { name: 'Code', repository, active: path },
     { name: 'Issues', number: issues, active: `${path}/issues` },
     {
       name: 'Pull Requests',

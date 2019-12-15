@@ -2,9 +2,21 @@ import axios from 'axios';
 
 class GithubApi {
   constructor() {
-    this.api = axios.create({
-      baseURL: 'https://api.github.com',
-    });
+    if (process.env.NODE_ENV !== 'development') {
+      this.api = axios.create({
+        baseURL: 'https://api.github.com',
+      });
+    } else {
+      this.api = axios.create({
+        baseURL: 'https://api.github.com',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/vnd.github.v3.raw',
+          Authorization: `token ${process.env.REACT_APP_GIT_TOKEN}`,
+        },
+      });
+    }
+
     this.login = JSON.parse(localStorage.getItem('codio_user'))
       ? JSON.parse(localStorage.getItem('codio_user')).login
       : null;

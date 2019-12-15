@@ -97,7 +97,8 @@ function Repository({ session, match, location }) {
     location.pathname,
     issues.length,
     pullRequests.length,
-    commits.length
+    commits.length,
+    title
   );
 
   const handleBranchChange = ref => setCurrentBranch(ref);

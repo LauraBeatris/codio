@@ -54,9 +54,9 @@ export default function Layout({ children, items, actualPage, atProfile }) {
 
     return items.map((i, key) => {
       let path = null;
-      if (i.name === 'Dashboard' || i.name === 'Code') {
+      if (i.name === 'Dashboard') {
         path = '/dashboard/repositories';
-      } else if (i.name === 'Back to Repository') {
+      } else if (i.name === 'Back to Repository' || i.name === 'Code') {
         path = `/dashboard/repositories/${i.repository}`;
       } else {
         path = `${actualPage}/${i.name.toLowerCase().replace(/\s/g, '')}`;
