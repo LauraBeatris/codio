@@ -13,7 +13,7 @@
     <img alt="Made by Laura Beatris" src="https://img.shields.io/badge/made%20by-LauraBeatris-%23d95844">
   </a>
 
-  <img alt="License" src="https://img.shields.io/badge/licence-MIT-blue">
+  <img alt="License" src="https://img.shields.io/badge/licence-MIT-%23d95844">
 
   <a href="https://github.com/LauraBeatris/2budget/stargazers">
     <img alt="Stargazers" src="https://img.shields.io/github/stars/LauraBeatris/codio?style=social">
