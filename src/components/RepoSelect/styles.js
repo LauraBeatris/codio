@@ -67,17 +67,21 @@ export const CloneOrDownload = styled.div`
   transition: all 1s ease;
   width: 100%;
 
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 1px 15px rgba(27, 31, 35, 0.15);
+
   display: ${props => (props.active ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 
   position: absolute;
-  top: 115%;
+  top: 120%;
   right: 0%;
   width: 20rem;
-  border: 1px solid #000;
-  background: #fff;
 
   padding: 0.5rem;
   color: #333238;
@@ -118,7 +122,7 @@ export const CloneOrDownload = styled.div`
     }
   }
 
-  div {
+  div:not(.arrow-up) {
     width: 100%;
   }
 
@@ -150,5 +154,16 @@ export const CloneOrDownload = styled.div`
       height: inherit;
       padding: 0.3rem;
     }
+  }
+
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+
+    border: 7px solid transparent;
+    border-bottom-color: #fff;
+    left: 95.8%;
+    bottom: 100%;
   }
 `;

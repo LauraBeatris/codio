@@ -10,6 +10,7 @@ import {
   SelectContainer,
   CloneOrDownload,
   DownloadOrCloneContainer,
+  ArrowUp,
 } from './styles';
 
 export default function RepoSelect({
