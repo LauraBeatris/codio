@@ -3,13 +3,13 @@ import styled from 'styled-components';
 export const RepoContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: 20rem 2fr;
 `;
 
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export const HeaderInfo = styled.div`
