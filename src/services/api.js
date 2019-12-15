@@ -61,9 +61,11 @@ class GithubApi {
   }
 
   // Getting the data from a single repo
-  getRepository(name) {
-    const getRepo = this.api.get(`/repos/${this.login}/${name}`);
-    const getBranches = this.api.get(`/repos/${this.login}/${name}/branches`);
+  getRepository(name, page) {
+    const getRepo = this.api.get(`/repos/${this.login}/${name}?page=${page}`);
+    const getBranches = this.api.get(
+      `/repos/${this.login}/${name}/branches?page=${page}`
+    );
     const getCommits = this.api.get(`/repos/${this.login}/${name}/commits`);
     const getReleases = this.api.get(`/repos/${this.login}/${name}/releases`);
     const getContributors = this.api.get(
@@ -85,6 +87,33 @@ class GithubApi {
     ])
       .then(res => res)
       .catch(err => err);
+  }
+
+  getCommits(name, page = 1) {
+    return new Promise((resolve, reject) => {
+      this.api
+        .get(`/repos/${this.login}/${name}/commits?page=${page}`)
+        .then(res => resolve(res.data))
+        .catch(err => reject(err));
+    });
+  }
+
+  getIssues(name, page = 1) {
+    return new Promise((resolve, reject) => {
+      this.api
+        .get(`/repos/${this.login}/${name}/issues?page=${page}`)
+        .then(res => resolve(res.data))
+        .catch(err => reject(err));
+    });
+  }
+
+  getPullRequests(name, page = 1, state = 'all') {
+    return new Promise((resolve, reject) => {
+      this.api
+        .get(`/repos/${this.login}/${name}/pulls?page=${page}&state=${state}`)
+        .then(res => resolve(res.data))
+        .catch(err => reject(err));
+    });
   }
 
   getFiles(name, ref = 'master') {

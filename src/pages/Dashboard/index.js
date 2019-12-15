@@ -115,7 +115,7 @@ class Dashboard extends Component {
           )}
 
           <MoreButton onClick={() => this.handlePageChange(9)}>
-            Load More
+            Next Page
             <FaAngleDoubleRight />
           </MoreButton>
         </ProjectsContainer>

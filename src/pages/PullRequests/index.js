@@ -18,6 +18,7 @@ class PullRequests extends Component {
       pullRequests: null,
       repository: props.match.params.repo,
       language: null,
+      page: 1,
     };
   }
 
@@ -25,6 +26,7 @@ class PullRequests extends Component {
   async componentDidMount() {
     const { session, match } = this.props;
     const { repo: title } = match.params;
+    const { page } = this.state;
 
     session.updateValues({ loading: true, error: false });
 
@@ -36,7 +38,7 @@ class PullRequests extends Component {
         });
       })
       .catch(() => session.updateValues({ error: true }))
-      .then(() => session.updateValues({ loading: false }));
+      .then(() => session.updateValues({ loading: false, error: false }));
   }
 
   render() {
