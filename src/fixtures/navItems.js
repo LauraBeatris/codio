@@ -2,7 +2,7 @@ export const mainItems = [
   { name: 'Dashboard', active: '/dashboard/repositories' },
 ];
 
-export const repositoryItems = (path, issues, pullRequests) => {
+export const repositoryItems = (path, issues, pullRequests, commits) => {
   return [
     { name: 'Code', active: path },
     { name: 'Issues', number: issues, active: `${path}/issues` },
@@ -13,6 +13,6 @@ export const repositoryItems = (path, issues, pullRequests) => {
     },
     { name: 'Wiki', active: false },
     { name: 'Insights', active: false },
-    { name: 'Commits', active: `${path}/commits` },
+    { name: 'Commits', number: commits, active: `${path}/commits` },
   ];
 };

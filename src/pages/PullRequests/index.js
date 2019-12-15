@@ -91,7 +91,7 @@ class PullRequests extends Component {
               </PullRequest>
             ))
           ) : (
-            <p className="no-pulls"> There's no pull request </p>
+            <p className="no-pulls"> There's no pull request available </p>
           )}
         </Container>
       </Layout>

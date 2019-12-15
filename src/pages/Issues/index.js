@@ -86,7 +86,7 @@ class Issues extends Component {
               </Issue>
             ))
           ) : (
-            <p className="no-issues"> There's no issue </p>
+            <p className="no-issues"> There's no issue available </p>
           )}
         </Container>
       </Layout>

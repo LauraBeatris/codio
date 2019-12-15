@@ -78,7 +78,8 @@ function Repository({ session, match, location }) {
   const items = repositoryItems(
     location.pathname,
     issues.length,
-    pullRequests.length
+    pullRequests.length,
+    commits.length
   );
 
   if (session.loading) return <Loading text="Loading Repository..." />;

@@ -27,6 +27,7 @@ export const Issue = styled.div`
   border: 1px solid #bebebe;
   border-radius: 0.3rem;
   width: 100%;
+  margin-bottom: 0.5rem;
 
   p {
     font-size: 0.9rem;
