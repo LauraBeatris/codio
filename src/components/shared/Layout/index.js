@@ -54,7 +54,7 @@ export default function Layout({ children, items, actualPage }) {
 
     return items.map((i, key) => {
       let path = null;
-      if (i.name === 'Dashboard') {
+      if (i.name === 'Dashboard' || i.name === 'Code') {
         path = '/dashboard/repositories';
       } else if (i.name === 'Back to Repository') {
         path = `/dashboard/repositories/${i.repository}`;
