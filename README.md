@@ -29,7 +29,7 @@
 <hr>
 
 ## :rocket: About the project
-**Codio** is a Git UI Application made with the <a href="https://developer.github.com/v3/">GitHub API</a>. After authenticating with your github username, you're able to see your repositories with their Commits, Issues, Pull Request and also the quantity of Forks, Stars and Contributors. 
+**Codio** is a **Git UI Application** made with the <a href="https://developer.github.com/v3/">GitHub API</a>. After authenticating with your github username, you're able to see your repositories with their Commits, Issues, Pull Request and also the quantity of Forks, Stars and Contributors. 
 The issues and pull requests views are able to filter with the state, like closed, open or all, and also, at the other info views are applied data pagination.
 
 <hr>
