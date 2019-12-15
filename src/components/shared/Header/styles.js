@@ -7,6 +7,10 @@ export const HeaderContainer = styled.div`
   padding: 0.8rem;
   width: 100%;
 
+  @media (max-width: 1024px) {
+    padding: 0.3rem;
+  }
+
   img:not(.profile-icon) {
     border-radius: 50%;
   }
