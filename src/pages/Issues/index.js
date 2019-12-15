@@ -10,6 +10,9 @@ import Layout from '../../components/shared/Layout';
 import GithubApi from '../../services/api';
 
 import Loading from '../../components/Loading';
+import MoreButton from '../../components/MoreButton';
+
+import getLanguage from '../../helpers/getLanguage';
 
 class Issues extends Component {
   constructor(props) {
@@ -29,18 +32,44 @@ class Issues extends Component {
 
     session.updateValues({ loading: true, error: false });
 
-    await GithubApi.getRepository(title)
-      .then(res =>
-        this.setState({ issues: res[6].data, language: res[0].data.language })
-      )
+    await GithubApi.getIssues(title, page)
+      .then(issues => this.setState({ issues }))
       .catch(() => session.updateValues({ error: true }))
       .then(() => session.updateValues({ loading: false, error: false }));
   }
 
+  async componentDidUpdate(prevProps, prevState) {
+    const { session, match } = this.props;
+    const { repo: title } = match.params;
+    const { page } = this.state;
+
+    if (prevState.page !== page) {
+      session.updateValues({ loading: true, error: false });
+
+      await GithubApi.getIssues(title, page)
+        .then(issues => this.setState({ issues }))
+        .catch(() => session.updateValues({ error: true }))
+        .then(() => session.updateValues({ loading: false, error: false }));
+    }
+  }
+
+  handlePageChange = action => {
+    const { page } = this.state;
+    if (!action && page > 1) {
+      this.setState({ page: page - 1 });
+    } else if (action) {
+      this.setState({ page: page + 1 });
+    }
+  };
+
   render() {
     const { session, match } = this.props;
-    const { repository, issues, language } = this.state;
+    const { repository, issues, page } = this.state;
     const { loading } = session;
+
+    let language = null;
+    if (session.repositories)
+      language = getLanguage(session.repositories, repository);
 
     if (loading) return <Loading text="Loading Issues" />;
     return (
@@ -55,6 +84,10 @@ class Issues extends Component {
             title={`${match.params.repo} | Issues`}
             language={language}
             user={session.user}
+          />
+          <MoreButton
+            currentPage={page}
+            handlePageChange={this.handlePageChange}
           />
 
           {issues && issues.length > 0 ? (

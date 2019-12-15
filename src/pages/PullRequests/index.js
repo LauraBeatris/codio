@@ -10,6 +10,9 @@ import Layout from '../../components/shared/Layout';
 import GithubApi from '../../services/api';
 
 import Loading from '../../components/Loading';
+import MoreButton from '../../components/MoreButton';
+
+import getLanguage from '../../helpers/getLanguage';
 
 class PullRequests extends Component {
   constructor(props) {
@@ -22,7 +25,6 @@ class PullRequests extends Component {
     };
   }
 
-  // Getting the repo name from route param and finding in the context
   async componentDidMount() {
     const { session, match } = this.props;
     const { repo: title } = match.params;
@@ -30,21 +32,46 @@ class PullRequests extends Component {
 
     session.updateValues({ loading: true, error: false });
 
-    await GithubApi.getRepository(title)
-      .then(res => {
-        this.setState({
-          pullRequests: res[5].data,
-          language: res[0].data.language,
-        });
-      })
+    await GithubApi.getPullRequests(title, page)
+      .then(pullRequests => this.setState({ pullRequests }))
       .catch(() => session.updateValues({ error: true }))
       .then(() => session.updateValues({ loading: false, error: false }));
   }
 
+  async componentDidUpdate(prevProps, prevState) {
+    const { session, match } = this.props;
+    const { repo: title } = match.params;
+    const { page } = this.state;
+
+    if (prevState.page !== page) {
+      session.updateValues({ loading: true, error: false });
+
+      await GithubApi.getPullRequests(title, page)
+        .then(pullRequests => this.setState({ pullRequests }))
+        .catch(() => session.updateValues({ error: true }))
+        .then(() => session.updateValues({ loading: false, error: false }));
+    }
+  }
+
+  handlePageChange = action => {
+    const { page } = this.state;
+    if (!action && page > 1) {
+      this.setState({ page: page - 1 });
+    } else if (action) {
+      this.setState({ page: page + 1 });
+    }
+  };
+
   render() {
     const { session, match } = this.props;
-    const { repository, pullRequests, language } = this.state;
+    const { repository, pullRequests, page } = this.state;
     const { loading } = session;
+
+    let language = null;
+    if (session.repositories)
+      language = getLanguage(session.repositories, repository);
+
+    if (loading) return <Loading text="Loading Issues" />;
 
     if (loading) return <Loading text="Loading Pull Requests" />;
 
@@ -60,6 +87,10 @@ class PullRequests extends Component {
             title={`${match.params.repo} | Pull Requests`}
             language={language}
             user={session.user}
+          />
+          <MoreButton
+            currentPage={page}
+            handlePageChange={this.handlePageChange}
           />
 
           {pullRequests && pullRequests.length > 0 ? (
