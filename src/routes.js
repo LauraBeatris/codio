@@ -9,6 +9,8 @@ import RepositoryPullRequests from './pages/PullRequests';
 import RepositoryCommits from './pages/Commits';
 import RepositoryIssues from './pages/Issues';
 
+import Profile from './pages/Profile';
+
 import NotFound from './pages/NotFound';
 
 import InitProvider from './context';
@@ -18,7 +20,7 @@ export default () => (
     <InitProvider>
       <Switch>
         <Route path="/" exact component={Login} />
-
+        <Route path="/profile" component={Profile} />
         <Route path="/dashboard/repositories" exact component={Repositories} />
         <Route
           path="/dashboard/repositories/:repo"

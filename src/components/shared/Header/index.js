@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { FaBell } from 'react-icons/fa';
 
 import {
@@ -21,7 +22,6 @@ import CSS from '../../../assets/css-3.svg';
 function Header({ title, language, user, dash, ...rest }) {
   console.log(rest);
   const { avatar_url } = user;
-  const projectIcon = null;
 
   const images = {
     HTML: Html,
@@ -55,7 +55,9 @@ function Header({ title, language, user, dash, ...rest }) {
           <FaBell size="30" color="#333238" />
           <div className="count">5</div>
         </Notification>
-        <img src={avatar_url} alt="profile" />
+        <Link to="/profile">
+          <img src={avatar_url} alt="profile" />
+        </Link>
       </Profile>
     </HeaderContainer>
   );

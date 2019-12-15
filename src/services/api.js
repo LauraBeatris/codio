@@ -74,7 +74,16 @@ class GithubApi {
     return new Promise((resolve, reject) => {
       this.api
         .get(`/repos/${this.login}/${name}/contents?ref=${ref}`)
-        .then(async res => resolve(res.data))
+        .then(res => resolve(res.data))
+        .catch(err => reject(err));
+    });
+  }
+
+  getEvents() {
+    return new Promise((resolve, reject) => {
+      this.api
+        .get(`/users/${this.login}/events`)
+        .then(res => resolve(res.data))
         .catch(err => reject(err));
     });
   }

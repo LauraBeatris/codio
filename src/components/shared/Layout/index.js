@@ -25,7 +25,7 @@ import {
 } from './styles';
 import Logo from '../../../assets/transparent-logo.png';
 
-export default function Layout({ children, items, actualPage }) {
+export default function Layout({ children, items, actualPage, atProfile }) {
   const authItems = [
     { name: 'Sign In', active: '/' },
     { name: 'Register', active: false },
@@ -100,10 +100,14 @@ export default function Layout({ children, items, actualPage }) {
             </LogoContainer>
 
             <ProjectList>
-              <li className="title">
-                {' '}
-                {!atHome ? 'Project' : 'Select a repository'}{' '}
-              </li>
+              {!atProfile ? (
+                <li className="title">
+                  {' '}
+                  {!atHome ? 'Project' : 'Select a repository'}{' '}
+                </li>
+              ) : (
+                <li className="title"> Profile </li>
+              )}
               {renderItems()}
             </ProjectList>
 
@@ -149,10 +153,14 @@ export default function Layout({ children, items, actualPage }) {
         </LogoContainer>
 
         <ProjectList>
-          <li className="title">
-            {' '}
-            {!atHome ? 'Project' : 'Select a repository'}{' '}
-          </li>
+          {!atProfile ? (
+            <li className="title">
+              {' '}
+              {!atHome ? 'Project' : 'Select a repository'}{' '}
+            </li>
+          ) : (
+            <li className="title"> Profile </li>
+          )}
           {renderItems()}
         </ProjectList>
 
