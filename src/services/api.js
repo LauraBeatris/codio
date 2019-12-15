@@ -98,10 +98,10 @@ class GithubApi {
     });
   }
 
-  getIssues(name, page = 1) {
+  getIssues(name, page = 1, state = 'all') {
     return new Promise((resolve, reject) => {
       this.api
-        .get(`/repos/${this.login}/${name}/issues?page=${page}`)
+        .get(`/repos/${this.login}/${name}/issues?page=${page}&state=${state}`)
         .then(res => resolve(res.data))
         .catch(err => reject(err));
     });

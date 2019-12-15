@@ -34,3 +34,17 @@ export const PullRequest = styled.div`
     text-align: center;
   }
 `;
+
+export const FiltersContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PullRequestState = styled.select`
+  background: #eee;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.2rem;
+  font-weight: bold;
+  font-size: 1rem;
+`;

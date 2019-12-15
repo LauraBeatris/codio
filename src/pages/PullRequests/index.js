@@ -5,7 +5,12 @@ import moment from 'moment';
 import MainHeader from '../../components/shared/Header';
 import { InitConsumer } from '../../context';
 
-import { Container, PullRequest } from './styles';
+import {
+  Container,
+  PullRequest,
+  FiltersContainer,
+  PullRequestState,
+} from './styles';
 import Layout from '../../components/shared/Layout';
 import GithubApi from '../../services/api';
 
@@ -22,6 +27,7 @@ class PullRequests extends Component {
       repository: props.match.params.repo,
       language: null,
       page: 1,
+      state: 'all',
     };
   }
 
@@ -41,12 +47,12 @@ class PullRequests extends Component {
   async componentDidUpdate(prevProps, prevState) {
     const { session, match } = this.props;
     const { repo: title } = match.params;
-    const { page } = this.state;
+    const { page, state } = this.state;
 
-    if (prevState.page !== page) {
+    if (prevState.page !== page || prevState.state !== state) {
       session.updateValues({ loading: true, error: false });
 
-      await GithubApi.getPullRequests(title, page)
+      await GithubApi.getPullRequests(title, page, state)
         .then(pullRequests => this.setState({ pullRequests }))
         .catch(() => session.updateValues({ error: true }))
         .then(() => session.updateValues({ loading: false, error: false }));
@@ -88,10 +94,21 @@ class PullRequests extends Component {
             language={language}
             user={session.user}
           />
-          <MoreButton
-            currentPage={page}
-            handlePageChange={this.handlePageChange}
-          />
+
+          <FiltersContainer>
+            <MoreButton
+              currentPage={page}
+              handlePageChange={this.handlePageChange}
+            />
+            <PullRequestState
+              onChange={ev => this.setState({ state: ev.target.value })}
+            >
+              <option> Select a State </option>
+              <option value="all">All</option>
+              <option value="closed">Closed</option>
+              <option value="open">Open</option>
+            </PullRequestState>
+          </FiltersContainer>
 
           {pullRequests && pullRequests.length > 0 ? (
             pullRequests.map(p => (

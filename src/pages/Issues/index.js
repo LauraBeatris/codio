@@ -5,7 +5,7 @@ import moment from 'moment';
 import MainHeader from '../../components/shared/Header';
 import { InitConsumer } from '../../context';
 
-import { Container, Issue } from './styles';
+import { Container, Issue, FiltersContainer, IssuesState } from './styles';
 import Layout from '../../components/shared/Layout';
 import GithubApi from '../../services/api';
 
@@ -22,6 +22,7 @@ class Issues extends Component {
       repository: props.match.params.repo,
       language: null,
       page: 1,
+      state: 'all',
     };
   }
 
@@ -41,12 +42,12 @@ class Issues extends Component {
   async componentDidUpdate(prevProps, prevState) {
     const { session, match } = this.props;
     const { repo: title } = match.params;
-    const { page } = this.state;
+    const { page, state } = this.state;
 
-    if (prevState.page !== page) {
+    if (prevState.page !== page || prevState.state !== state) {
       session.updateValues({ loading: true, error: false });
 
-      await GithubApi.getIssues(title, page)
+      await GithubApi.getIssues(title, page, state)
         .then(issues => this.setState({ issues }))
         .catch(() => session.updateValues({ error: true }))
         .then(() => session.updateValues({ loading: false, error: false }));
@@ -85,10 +86,20 @@ class Issues extends Component {
             language={language}
             user={session.user}
           />
-          <MoreButton
-            currentPage={page}
-            handlePageChange={this.handlePageChange}
-          />
+          <FiltersContainer>
+            <MoreButton
+              currentPage={page}
+              handlePageChange={this.handlePageChange}
+            />
+            <IssuesState
+              onChange={ev => this.setState({ state: ev.target.value })}
+            >
+              <option> Select a State </option>
+              <option value="all">All</option>
+              <option value="closed">Closed</option>
+              <option value="open">Open</option>
+            </IssuesState>
+          </FiltersContainer>
 
           {issues && issues.length > 0 ? (
             issues.map(p => (
