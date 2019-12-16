@@ -89,6 +89,7 @@ class GithubApi {
       .catch(err => err);
   }
 
+  // Getting the commits of the repository, with pagination and state
   getCommits(name, page = 1) {
     return new Promise((resolve, reject) => {
       this.api
@@ -98,6 +99,7 @@ class GithubApi {
     });
   }
 
+  // Getting the issues of the repository, with pagination and state
   getIssues(name, page = 1, state = 'all') {
     return new Promise((resolve, reject) => {
       this.api
@@ -107,6 +109,7 @@ class GithubApi {
     });
   }
 
+  // Getting the pull requests of the repository, with pagination and state
   getPullRequests(name, page = 1, state = 'all') {
     return new Promise((resolve, reject) => {
       this.api
@@ -116,6 +119,7 @@ class GithubApi {
     });
   }
 
+  // Getting the files from the repo - Passing the reference - Master as default
   getFiles(name, ref = 'master') {
     return new Promise((resolve, reject) => {
       this.api
@@ -125,6 +129,7 @@ class GithubApi {
     });
   }
 
+  // Getting the events related to the user
   getEvents() {
     return new Promise((resolve, reject) => {
       this.api

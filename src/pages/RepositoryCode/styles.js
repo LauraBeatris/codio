@@ -21,6 +21,7 @@ export const HeaderInfo = styled.div`
 
   @media (min-width: 300px) and (max-width: 767px) {
     margin-left: 0rem;
+    padding: 0.3rem;
   }
 `;
 
