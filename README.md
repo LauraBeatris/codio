@@ -60,7 +60,7 @@ These headers will be included to your requests
 
 ## :memo: Licence
 
-MIT Licence. See the file [LICENSE](LICENSE.md) for more details.
+MIT Licence. See the file [LICENSE](https://github.com/LauraBeatris/codio/blob/master/LICENSE) for more details.
 
 ---
 
