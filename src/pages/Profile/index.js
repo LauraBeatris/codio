@@ -124,19 +124,20 @@ class Profile extends Component {
                     eventIcon = <FaPushed size="30" color="#a5a5a5" />;
                   }
 
-                  return (
-                    <EventItem>
-                      <div>
-                        {eventIcon}
-                        {eventText}
-                      </div>
+                  if (!!eventText && !!eventIcon)
+                    return (
+                      <EventItem>
+                        <div>
+                          {eventIcon}
+                          {eventText}
+                        </div>
 
-                      <p className="created-at">
-                        {' '}
-                        {moment(active.created_at).fromNow()}{' '}
-                      </p>
-                    </EventItem>
-                  );
+                        <p className="created-at">
+                          {' '}
+                          {moment(active.created_at).fromNow()}{' '}
+                        </p>
+                      </EventItem>
+                    );
                 })
               ) : (
                 <p> There's no active available </p>

@@ -18,7 +18,7 @@ export const FileContainer = styled.div`
       }
 
       &:first-child {
-        margin: 0rem 0.3rem 0rem 0rem;
+        margin: 0rem 0.3rem 0rem 0.1rem;
       }
     }
   }
