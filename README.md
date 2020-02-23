@@ -64,6 +64,6 @@ MIT Licence. See the file [LICENSE](https://github.com/LauraBeatris/codio/blob/m
 
 ---
 
-If you have some problem with the documentation or the application, just send a issue/pull request that i'll be happy to help. 😃
+If you have some problem with the application, don't be afraid to contribute sending a issue/pull request, i'll be happy to help. 😃
 
 Made with ♥ by Laura :wave: [See my linkedin!](https://www.linkedin.com/in/laurabeatris/)
