@@ -30,7 +30,7 @@
 
 ## :rocket: About the project
 **Codio** is a **Git UI Application** made with the <a href="https://developer.github.com/v3/">GitHub API</a>. After authenticating with your github username, you're able to see your repositories with their Commits, Issues, Pull Request and also the quantity of Forks, Stars and Contributors. 
-The issues and pull requests views are able to filter with the state, like closed, open or all, and also, at the other info views are applied data pagination.
+The issues and pull requests views can be filtered by states, like closed, open or all, and also, at the other info views are applied data pagination.
 
 <hr>
 
@@ -46,7 +46,7 @@ And then, run locally
   yarn start
 ```
 
-Putting the **NODE_ENV** environment variable as development you can do API calls with your token. So you'll be able to access more endpoints like user notifications. For that, go to your GitHub Profile Setting and create a token, after this, copy it and put in a environment variable called **REACT_APP_GIT_TOKEN** 
+Putting the **NODE_ENV** environment variable as development give you the ability to do API calls with your token. So you'll be able to access more endpoints like user notifications. For that, go to your GitHub Profile Setting and create a token, after that, copy it and put in a environment variable called **REACT_APP_GIT_TOKEN** 
 
 These headers will be included to your requests 
 ```
@@ -64,6 +64,6 @@ MIT Licence. See the file [LICENSE](https://github.com/LauraBeatris/codio/blob/m
 
 ---
 
-If you have some problem with the application, don't be afraid to contribute sending a issue/pull request, i'll be happy to help. 😃
+If you have some problem with the application, don't be afraid to contribute sending a issue/pull request. 😃
 
 Made with ♥ by Laura :wave: [See my linkedin!](https://www.linkedin.com/in/laurabeatris/)
