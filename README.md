@@ -46,7 +46,7 @@ And then, run locally
   yarn start
 ```
 
-Putting the **NODE_ENV** environment variable as development give you the ability to do API calls with your token. So you'll be able to access more endpoints like user notifications. For that, go to your GitHub Profile Setting and create a token, after that, copy it and put in a environment variable called **REACT_APP_GIT_TOKEN** 
+Putting the **NODE_ENV** environment variable as development, gives you the ability to do API calls with your token. So you'll be able to access more endpoints like user notifications. For that, go to your GitHub Profile Setting and create a token, after that, copy it and put in a environment variable called **REACT_APP_GIT_TOKEN** 
 
 These headers will be included to your requests 
 ```
