@@ -36,16 +36,11 @@ class GithubApi {
 
   // Getting the auth token of the user
   postAuthentication(login, password) {
-    return new Promise((resolve, reject) => {
-      this.api
-        .get('/user', {
-          headers: {
-            username: 'LauraBeatris',
-            password: 'eamsc4544',
-          },
-        })
-        .then(res => resolve(console.log(res.data)))
-        .catch(err => reject(console.log(err)));
+    return this.api.get('/user', {
+      headers: {
+        username: login,
+        password,
+      },
     });
   }
 
