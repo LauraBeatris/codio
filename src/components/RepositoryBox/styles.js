@@ -4,7 +4,7 @@ export const RepositoryBox = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-gap: 0.2rem;
-  height: 9rem;
+  min-height: 9rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   padding: 1rem;
