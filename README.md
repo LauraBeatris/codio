@@ -1,69 +1,88 @@
-<h1 align="center">
-  <img alt="Codio" title="Codio" src=".github/logo.png" width="200px" />
-</h1>
-
-<h3 align="center">
-  Git UI Application using the <a href="https://developer.github.com/v3/">GitHub API</a>
-</h3>
-
-<p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/LauraBeatris/codio?color=%23d95844&label=languages&logo=languages">
-
-  <a href="https://www.linkedin.com/in/laurabeatris/">
-    <img alt="Made by Laura Beatris" src="https://img.shields.io/badge/made%20by-LauraBeatris-%23d95844">
-  </a>
-
-  <img alt="License" src="https://img.shields.io/badge/licence-MIT-%23d95844">
-
-  <a href="https://github.com/LauraBeatris/2budget/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/LauraBeatris/codio?style=social">
-  </a>
+<p align="left">
+   <img src=".github/logo.png" width="150"/>
 </p>
 
+# Codio
+
+[![Author](https://img.shields.io/badge/author-LauraBeatris-DB5A45?style=flat-square)](https://github.com/LauraBeatris)
+[![Languages](https://img.shields.io/github/languages/count/LauraBeatris/codio?color=%23DB5A45&style=flat-square)](#)
+[![Stars](https://img.shields.io/github/stars/LauraBeatris/codio?color=DB5A45&style=flat-square)](https://github.com/LauraBeatris/codio/stargazers)
+[![Forks](https://img.shields.io/github/forks/LauraBeatris/codio?color=%23DB5A45&style=flat-square)](https://github.com/LauraBeatris/codio/network/members)
+[![Contributors](https://img.shields.io/github/contributors/LauraBeatris/codio?color=DB5A45&style=flat-square)](https://github.com/LauraBeatris/codio/graphs/contributors)
+
+> Git UI made with the [GitHub API](https://developer.github.com/v3/)
+
 <p align="center">
-  <a href="#rocket-about-the-project">About the project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#checkered_flag-installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licence">Licence</a>
+  <img align="center" src=".github/signin.gif" alt="Signin" border="0">
 </p>
+<br>
+<p align="center">
+  <img align="center" src=".github/repositories.gif" alt="Repositories" border="0">
+</p>
+<br>
 
-<hr>
+---
 
-## :rocket: About the project
-**Codio** is a **Git UI Application** made with the <a href="https://developer.github.com/v3/">GitHub API</a>. After authenticating with your github username, you're able to see your repositories with their Commits, Issues, Pull Request and also the quantity of Forks, Stars and Contributors. 
-The issues and pull requests views can be filtered by states, like closed, open or all.
+# :pushpin: Table of Contents
 
-<hr>
+* [Features](#rocket-features)
+* [Installation](#construction_worker-installation)
+* [Getting Started](#runner-getting-started)
+* [FAQ](#postbox-faq)
+* [Found a bug? Missing a specific feature?](#bug-issues)
+* [Contributing](#tada-contributing)
+* [License](#closed_book-license)
 
-## :checkered_flag: Installation 
+# :rocket: Features
 
-Install the dependecies 
+* 🧭 Explore repositories
+* 👩🏻‍💻 See all the data related to the activies of your Github Account
 
-``` 
-  yarn install 
-```
-And then, run locally 
-``` 
-  yarn start
-```
+# :construction_worker: Installation
 
-Putting the **NODE_ENV** environment variable as development, gives you the ability to do API calls with your token. So you'll be able to access more endpoints like user notifications. For that, go to your GitHub Profile Setting and create a token, after that, copy it and put in a environment variable called **REACT_APP_GIT_TOKEN** 
+**You need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then in order to clone the project via HTTPS, run this command:**
 
-These headers will be included to your requests 
+```git clone https://github.com/LauraBeatris/codio.git```
+
+SSH URLs provide access to a Git repository via SSH, a secure protocol. If you have a SSH key registered in your Github account, clone the project using this command:
+
+```git clone git@github.com:LauraBeatris/codio.git```
+
+**Install dependencies**
+
+```yarn install```
+
+# :runner: Getting Started
+
+Setting the **NODE_ENV** environment variable as development, gives you the ability to do API calls with your token. So you'll be able to access more endpoints like user notifications. For that, go to your GitHub Profile Setting and create a token, after that, copy it and put in a environment variable called **REACT_APP_GIT_TOKEN**
+
+These headers will be included to your requests
 ```
     Content-Type: 'application/json',
     Accept: 'application/vnd.github.v3.raw',
     Authorization: `token ${process.env.REACT_APP_GIT_TOKEN}
 ```
+Run the following command in order to start the application in a development environment:
 
-<br>
+```yarn start```
 
+# :postbox: Faq
 
-## :memo: Licence
+**Question:** What are the tecnologies used in this project?
 
-MIT Licence. See the file [LICENSE](https://github.com/LauraBeatris/codio/blob/master/LICENSE) for more details.
+**Answer:** The tecnologies used in this project are [React](https://nodejs.org/en/) + [Styled Components](https://styled-components.com/) to handle scoped CSS.
 
----
+# :bug: Issues
 
-If you have some problem with the application, don't be afraid to contribute sending a issue/pull request. 😃
+Feel free to **file a new issue** with a respective title and description on the the [Codio](https://github.com/LauraBeatris/codio/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/codio/blob/master/CONTRIBUTING.md) to find out about the coding standards.
 
-Made with ♥ by Laura :wave: [See my linkedin!](https://www.linkedin.com/in/laurabeatris/)
+# :tada: Contributing
+
+Check out the [contributing](https://github.com/LauraBeatris/codio/blob/master/CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
+
+# :closed_book: License
+
+Released in 2019.
+This project is under the [MIT license](https://github.com/LauraBeatris/codio/master/LICENSE).
+
+Made with love by [Laura Beatris](https://github.com/LauraBeatris) 💜🚀
